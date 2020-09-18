@@ -28,3 +28,27 @@ yum install galera-4 and mysql-wsrep-8.0
 # get the temporary password 
 cat /var/log/mysqld.log | grep "password.*generated"
 ```
+
+## 3. Configuration SELinux  
+
+```
+# Open everything that is needed 
+semanage port -a -t mysqld_port_t -p tcp 3306
+semanage port -a -t mysqld_port_t -p tcp 4444
+semanage port -a -t mysqld_port_t -p tcp 4567
+semanage port -a -t mysqld_port_t -p udp 4567
+semanage port -a -t mysqld_port_t -p tcp 4568
+semanage permissive -a mysqld_t
+```
+
+## 4. Firewall 
+
+```
+firewall-cmd --zone=public --add-service=mysql --permanent
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --zone=public --add-port=4444/tcp --permanent
+firewall-cmd --zone=public --add-port=4567/tcp --permanent
+firewall-cmd --zone=public --add-port=4567/udp --permanent
+firewall-cmd --zone=public --add-port=4568/tcp --permanent
+firewall-cmd --reload
+```
