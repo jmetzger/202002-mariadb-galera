@@ -48,7 +48,8 @@ semanage permissive -a mysqld_t
 ## 4. Firewall 
 
 ```
-firewall-cmd --zone=public --add-service=mysql --permanent
+# redundant - next line
+# firewall-cmd --zone=public --add-service=mysql --permanent
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 firewall-cmd --zone=public --add-port=4444/tcp --permanent
 firewall-cmd --zone=public --add-port=4567/tcp --permanent
