@@ -37,11 +37,16 @@ cat /var/log/mysqld.log | grep "password.*generated"
 
 ```
 # Open everything that is needed 
-semanage port -a -t mysqld_port_t -p tcp 3306
-semanage port -a -t mysqld_port_t -p tcp 4444
-semanage port -a -t mysqld_port_t -p tcp 4567
-semanage port -a -t mysqld_port_t -p udp 4567
-semanage port -a -t mysqld_port_t -p tcp 4568
+# setools provide command semanage
+yum provides semanage
+yum install setools 
+# Somehow redundant when you open the service altogether
+# With mysqld_t 
+# semanage port -a -t mysqld_port_t -p tcp 3306
+# semanage port -a -t mysqld_port_t -p tcp 4444
+# semanage port -a -t mysqld_port_t -p tcp 4567
+# semanage port -a -t mysqld_port_t -p udp 4567
+# semanage port -a -t mysqld_port_t -p tcp 4568
 semanage permissive -a mysqld_t
 ```
 
