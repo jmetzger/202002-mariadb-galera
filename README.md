@@ -1,6 +1,10 @@
 # MySQL - Galera - Training (codership)  
 
-## 1. Centos - Repo - Configuration  
+```
+We are working with Centos 7 here 
+```
+
+## 1. Centos 7 - Repo - Configuration  
 
   * https://galeracluster.com/library/documentation/install-mysql.html
 
