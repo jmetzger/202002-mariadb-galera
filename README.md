@@ -1,4 +1,4 @@
-# MySQL - Galera - Training 
+# MySQL - Galera - Training (codership)  
 
 ## 1. Centos - Repo - Configuration  
 
@@ -25,4 +25,6 @@ gpgcheck = 1
 
 ```
 yum install galera-4 and mysql-wsrep-8.0
+# get the temporary password 
+cat /var/log/mysqld.log | grep "password.*generated"
 ```
