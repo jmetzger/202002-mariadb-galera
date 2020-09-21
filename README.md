@@ -89,7 +89,7 @@ firewall-cmd --reload
 
 ## MySQL Galera Cluster 
 
-###  MariaDB Galera Cluster Architecture
+###  MySQL Galera Cluster Architecture
 
 #### Technical Structure of the cluster
 
