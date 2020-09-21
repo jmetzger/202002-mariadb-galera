@@ -6,25 +6,25 @@ We are working with Centos 7 here
 
 ## Agenda 
 
-  - Architecture of the MySQL - Server
+  1. Architecture of the MySQL - Server
  
-  - Installation
+  1. Installation
 
-  - Configuration
+  1. Configuration
  
-  - Security and User-Rights
+  1. Security and User-Rights
  
-  - Locking 
+  1. Locking 
 
-  - Database objects 
+  1. Database objects 
 
-  - Monitoring 
+  1. Monitoring 
 
-  - Performance Optimization 
+  1. Performance Optimization 
 
-  - Backups 
+  1. Backups 
 
-  - MySQL - Galera - Cluster 
+  1. MySQL - Galera - Cluster 
 
 ## 1. Centos 7 - Repo - Configuration  
 
