@@ -116,3 +116,36 @@ firewall-cmd --reload
 *  Some are blocking, some are not (let's see later)
 
 ###### Incremental State Transfer (IST)
+
+*  A node only receives the missing write sets.
+
+*  Is only done, when
+    * The missing write-sets are in the gcache of the donor
+    * Otherwice SST is done
+
+##### Global Transaction Number
+
+
+*  Global Transaction ID
+
+*  In order to keep the state identical across the cluster, \\ the wsrep API uses a Global Transaction ID, or GTID. \\ This allows it to identify state changes and to identify the current state in relation to the last state change.
+
+*  Example: 45eec521-2f34-11e0-0800-2a36050b826b:94530586304
+
+#####  gcache(=write-set-cache) ==
+
+
+*  Cache to save writesets
+
+*  Used to perform IST
+
+#### How do out-of-sync Nodes resynchronize ?
+
+#### When does a cluster make sense and when not ?
+
+##### PRE-Requisite
+
+
+*  The primary focus of Galera Cluster is data consistency across the nodes.
+
+#####  DOES NOT: Application not ready
