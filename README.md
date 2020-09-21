@@ -68,6 +68,17 @@ cat /var/log/mysqld.log | grep "password.*generated"
 ### 2.3 Configuration SELinux  
 
 ```
+# Disable selinux at runtime 
+sestatus
+# switch from enforcing to permissive (runtime) 
+setenforce 0
+getenforce
+sestatus
+
+```
+
+
+```
 # Open everything that is needed 
 # setools provide command semanage
 yum provides semanage
