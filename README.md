@@ -1,8 +1,30 @@
-# MySQL - Galera - Training (codership)  
+# MySQL - Administration / Galera - Training (codership)  
 
 ```
 We are working with Centos 7 here 
 ```
+
+## Agenda 
+
+  * Architecture of the MySQL - Server
+ 
+  * Installation
+
+  * Konfiguration
+ 
+  * Security and User-Rights
+ 
+  * Locking 
+
+  * Database-Objects 
+
+  * Monitoring 
+
+  * Performance Optimization 
+
+  * Backups 
+
+  * MySQL - Galera - Cluster 
 
 ## 1. Centos 7 - Repo - Configuration  
 
