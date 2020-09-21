@@ -26,7 +26,10 @@ We are working with Centos 7 here
 
   1. MySQL - Galera - Cluster 
 
-## 2.1 Centos 7 - Repo - Configuration  
+
+## Installation
+
+### 2.1 Centos 7 - Repo - Configuration  
 
   * https://galeracluster.com/library/documentation/install-mysql.html
 
@@ -46,8 +49,7 @@ gpgcheck = 1
 
 ```
 
-## 2.2 Installation 
-
+### 2.2 Installation 
 
 ```
 yum install galera-4 and mysql-wsrep-8.0
@@ -55,7 +57,7 @@ yum install galera-4 and mysql-wsrep-8.0
 cat /var/log/mysqld.log | grep "password.*generated"
 ```
 
-## 2.3 Configuration SELinux  
+### 2.3 Configuration SELinux  
 
 ```
 # Open everything that is needed 
@@ -72,7 +74,7 @@ yum install setools
 semanage permissive -a mysqld_t
 ```
 
-## 2.4 Firewall 
+### 2.4 Firewall 
 
 ```
 # redundant - next line
