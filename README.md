@@ -53,6 +53,14 @@ gpgcheck = 1
 
 ```
 yum install galera-4 and mysql-wsrep-8.0
+# Show service mysql
+systemctl list-unit-files -t service | grep mysql
+systemctl start mysqld.service 
+systemctl status mysqld.service 
+# Nicht beim Starten vom Server starten 
+systemctl disable mysqld.service 
+systemctl enable mysqld.service 
+
 # get the temporary password 
 cat /var/log/mysqld.log | grep "password.*generated"
 ```
