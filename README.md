@@ -65,6 +65,12 @@ systemctl enable mysqld.service
 cat /var/log/mysqld.log | grep "password.*generated"
 ```
 
+```
+# findout if mysql listen to the outside
+# look for *:mysql
+lsof -i 
+```
+
 ### 2.3 Configuration SELinux  
 
 ```
