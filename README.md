@@ -122,6 +122,12 @@ firewall-cmd --zone=public --add-port=4568/tcp --permanent
 firewall-cmd --reload
 ```
 
+## 3 Configuration 
+
+### Best source 
+
+https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
+
 ## MySQL Galera Cluster 
 
 ###  MySQL Galera Cluster Architecture
