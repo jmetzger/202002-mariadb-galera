@@ -68,6 +68,7 @@ cat /var/log/mysqld.log | grep "password.*generated"
 ### 2.3 Configuration SELinux  
 
 ```
+# Option 1
 # Disable selinux at runtime 
 sestatus
 # switch from enforcing to permissive (runtime) 
@@ -79,6 +80,7 @@ sestatus
 
 
 ```
+# Option 2
 # Open everything that is needed 
 # setools provide command semanage
 yum provides semanage
@@ -96,6 +98,14 @@ semanage permissive -a mysqld_t
 ### 2.4 Firewall 
 
 ```
+# Option 1
+systemctl disable firewalld
+systemctl stop firewalld 
+```
+
+
+```
+# Option 2
 # redundant - next line
 # firewall-cmd --zone=public --add-service=mysql --permanent
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
