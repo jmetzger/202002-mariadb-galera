@@ -280,7 +280,7 @@ wsrep_sst_method=rsync
 *  Value 2 (=interleaved) allows the system to insert in parallel (better performance)
     * !! Works only with ROW-Based replication
 
-*  `<code>`From galera manual
+``` From galera manual
 innodb_autoinc_lock_mode=2
 Do not change this value.
 
@@ -292,7 +292,7 @@ to traditional lock mode, indicated by 0, or to consecutive lock mode,
 indicated by 1, in Galera Cluster it can cause unresolved deadlocks
 and make the system unresponsive.
 
-`</code>`
+```
 
 #### First going live ;o)
 
@@ -311,7 +311,8 @@ and make the system unresponsive.
 
 ##### Node 1: Check cluster size
 
-     mysql -uroot -p
+```
+mysql -uroot -p
         show status like 'wsrep_cluster_size';
         +--------------------+-------+
         | Variable_name      | Value |
@@ -319,7 +320,7 @@ and make the system unresponsive.
         | wsrep_cluster_size | 1     |
         +--------------------+-------+
         1 row in set (0.001 sec)
-
+```
 
 ##### Node 2
 
@@ -343,27 +344,20 @@ and make the system unresponsive.
 
 
 #####  Node 3
-
-
 	
-	# mariadb 10.3 starts server directly after installation
 	# so stop it first 
 	systemctl stop mysql 
 	
 	# galera.cnf configuration must be in place 
 	systemctl start mysql
 
-
 ##### Node 3: Check status
-
 	
 	# Is it part of the cluster now ? 
 	# mysql -uroot -p 
 	show status like 'wsrep_cluster_size'
 	# is it synced (so it has all the data from the other node
 	show status like 'wsrep_local_state_comment' 
-
-
 
 ### The MaxScale - Loadbalancer
 
@@ -378,7 +372,6 @@ and make the system unresponsive.
 
 #### License Implications since 2.x
 
-
 *  MariaDB MaxScale >= 2.0 is licensed under MariaDB BSL.
 
 *  maximum of three servers in a commercial context. 
@@ -391,7 +384,6 @@ and make the system unresponsive.
 
 #### The MaxScale load-balancer and its components
 
-
 *  Listeners 
 
 *  Filters
@@ -400,7 +392,6 @@ and make the system unresponsive.
 *  Servers (backend database server)
 
 #####  Filters
-
 
 *  Logging Filters
 
@@ -420,17 +411,14 @@ and make the system unresponsive.
 #### Installation and Setup
 
 ##### Installation
-
 	
 	# Setting up the repos 
 	curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 	# Installing maxscale
 	apt install maxscale
 
-
 ##### Setup (Part 1: MaxScale db-user)
 
-	
 	# Setup privileges on cluster nodes
 	# It is sufficient to set it on one node, because 
 	# it will be synced to all the other nodes
@@ -442,11 +430,10 @@ and make the system unresponsive.
 	
 	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'%';
 
-
 ##### Setup (Part 2: Configuration)
 
 
-*  `<code>`
+```
 # /etc/maxscale.cnf
 
 [maxscale]
@@ -514,21 +501,20 @@ type=server
 address=142.93.103.246
 port=3306
 protocol=MariaDBBackend
-`</code>`
+```
 
-
-*  `<code>`
+```
 # Start
 
 systemctl start maxscale  
-`</code>`
+```
 
 
-*  `<code>`
+```
 # What does the log say ? 
 
 # /var/log/maxscale/maxscale.log 
-`</code>`
+```
 
 ### The ProxySQL - Proxy / LoadBalancer
 
@@ -543,200 +529,21 @@ In ProxySQL 2.0 galera functionality is well integrated out of the box.
 
 #### Installation and Setup
 
-##### Installation of MariaDB-Client (Centos 7)
+##### Installation of MySQL-Client (Centos 7)
 
 
-*  `<code>`
-[mariadb]
-name = MariaDB
-baseurl = http://yum.mariadb.org/10.3/centos7-amd64
-gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgcheck=1
-# 
-
-# Now install 
-sudo yum install MariaDB-client
-`</code>`
-
-##### Installation of ProxySQL (Centos 7)
-
-
-*  1. Get Repo `<code>`
-# Best way is to setup a repo to be used
-
-# Makes updating way easier 
-cat <<EOF | tee /etc/yum.repos.d/proxysql.repo
-[proxysql_repo]
-name= ProxySQL YUM repository
-baseurl=https://repo.proxysql.com/ProxySQL/proxysql-2.0.x/centos/\$releasever
-gpgcheck=1
-gpgkey=https://repo.proxysql.com/ProxySQL/repo_pub_key
-EOF
-`</code>`
-
-*  2. Install `<code>`
-# yum install proxysql OR yum install proxysql-version
-
-yum install proxysql
-# also a mariadb-client would be nice, because we need it to test and configure proxysql
-
-#  we take the one from centos 
-yum install mariadb-client
-`</code>`
-
-#####  Version ?
-
-	
-	proxysql --version
-	# ProxySQL version 2.0.8-67-g877cab1, codename Truls
-
-
-##### Configuration File
-
-The configuration is in: /etc/proxysql.cnf
-
-##### mysql_galera_hostgroups (in proxysql 2.x)
-
-
-*  Determines how cluster is handled
-
-*  `<code>`
-writer_hostgroup        - which hostgroup to write to
-max_writers             - max number of host in the writers group, the rest is moved to backup_writer_hostgroup
-readers_hostgroup       - Holds all the reader- nodes (also hosts are moved there dynamically
-offline_hostgroup       - All hosts that are not online (because of e.g. local_state != SYNCED)
-active                  - hostgroup active or not
-writer_is_also_reader   - when set to 1, all nodes in writer_hostgroup will also be added to readers
-max_transactions_behind - writeset a node is allowed to be behind, before it gets shunned
-
-`</code>`
-
-##### Configuration for Galera
-
-
-*  Only loaded on first start
-
-*  After that loaded from sqlite-db
-
-*  `<code>`
-datadir="/var/lib/proxysql"
- 
-admin_variables=
-{
-    admin_credentials="admin:admin"
-    mysql_ifaces="0.0.0.0:6032"
-    refresh_interval=2000
-    web_enabled=true
-    web_port=6080
-    stats_credentials="stats:admin"
-}
- 
-mysql_variables=
-{
-    threads=4
-    max_connections=2048
-    default_query_delay=0
-    default_query_timeout=36000000
-    have_compress=true
-    poll_timeout=2000
-    interfaces="0.0.0.0:6033;/tmp/proxysql.sock"
-    default_schema="information_schema"
-    stacksize=1048576
-     server_version="5.1.30"
-    connect_timeout_server=10000
-    monitor_history=60000
-    monitor_connect_interval=200000
-    monitor_ping_interval=200000
-    ping_interval_server_msec=10000
-    ping_timeout_server=200
-    commands_stats=true
-    sessions_sort=true
-    monitor_username="proxysql"
-    monitor_password="proxysqlpassword"
-    monitor_galera_healthcheck_interval=2000
-    monitor_galera_healthcheck_timeout=800
-}
- 
-mysql_galera_hostgroups =
-(
-    {
-        writer_hostgroup=10
-        backup_writer_hostgroup=20
-        reader_hostgroup=30
-        offline_hostgroup=9999
-        max_writers=1
-        writer_is_also_reader=1
-        max_transactions_behind=30
-                active=1
-    }
-)
- 
-mysql_servers =
-(
-    { address="db1.cluster.local" , port=3306 , hostgroup=10, max_connections=100 },
-    { address="db2.cluster.local" , port=3306 , hostgroup=10, max_connections=100 },
-    { address="db3.cluster.local" , port=3306 , hostgroup=10, max_connections=100 }
-)
- 
-mysql_query_rules =
-(
-    {
-        rule_id=100
-        active=1
-        match_pattern="^SELECT .* FOR UPDATE"
-        destination_hostgroup=10
-        apply=1
-    },
-    {
-        rule_id=200
-        active=1
-        match_pattern="^SELECT .*"
-        destination_hostgroup=20
-        apply=1
-        
-    
-       match_pattern="^SELECT .*"
-        destination_hostgroup=20
-        apply=1
-    },
-    {
-        rule_id=300
-        active=1
-        match_pattern=".*"
-        destination_hostgroup=10
-        apply=1
-    }
-)
- 
-mysql_users =
-(
-    { username = "wordpress", password = "passw0rd", default_hostgroup = 10, transaction_persistent = 0, active = 1 },
-    { username = "sbtest", password = "passw0rd", default_hostgroup = 10, transaction_persistent = 0, active = 1 }
-)
-`</code>`
-
-#####  Create Monitoring User
-
-
-*  Sufficient to be a user with usage only 
-
-*  `<code>`
-# password as ypu have set it in the mysql_variables 
-
-CREATE USER 'proxysql'@'%' IDENTIFIED BY 'proxysqlpassword';
-# probably redundant 
-
-GRANT USAGE ON *.* TO 'proxysql'@'%';
-`</code>`
-
-##### 
+```
+# Use yum-repo from codershiper
+# just to be sure we have the same version 
+sudo yum install mysql-client (?) 
+```
 
 ### Common Cluster-Administration-Tasks
 
 ####  Find out galera wsrep - version
 
 
-*  `<code>`
+```
 SHOW GLOBAL STATUS LIKE 'wsrep_provider_version';
 
 +------------------------+---------------+
@@ -746,7 +553,7 @@ SHOW GLOBAL STATUS LIKE 'wsrep_provider_version';
  | wsrep_provider_version | 25.3.5(rXXXX) | 
  | ---------------------- | ------------- | 
 +------------------------+---------------+
-`</code>`
+```
 
 *  Which version belongs to which MariaDB-Version: \\ https://mariadb.com/kb/en/meta/galera-versions/
 
@@ -755,11 +562,9 @@ SHOW GLOBAL STATUS LIKE 'wsrep_provider_version';
 
 #### Configure Logging and Special Log
 
- 
-
 *  Everything is logged to error-log 
 
-*  `<code>`#You can decide what to log: 
+```#You can decide what to log: 
 wsrep_log_conflicts # Log when conflicts occur
                     # Like to servers want to write to the same row
 cert.log_conflicts  # Log certificate conflicts while replicating  
@@ -767,15 +572,15 @@ cert.log_conflicts  # Log certificate conflicts while replicating
 wsrep_debug         # Show additional debug information on errors 
                     # Attention: Do not use in Production 
                     # BECAUSE: it also shows auth-information (user/pass)
-`</code>`
+```
 
-*  `<code>`# Example 
+```# Example 
 # wsrep Log Options
 
 wsrep_log_conflicts=ON
 wsrep_provider_options="cert.log_conflicts=ON"
 wsrep_debug=ON
-`</code>`
+```
 
 *  Ref: http://galeracluster.com/documentation-webpages/log.html
 
@@ -813,13 +618,12 @@ wsrep_debug=ON
 
 ##### Using TOI
 
-
-*  `<code>`
+```
 # Schema changes are processed on all nodes
 
 # All nodes are locked till it is done.
 SET GLOBAL wsrep_OSU_method='TOI';
-`</code>`
+```
 
 #### Starting a cluster after full shutdown
 
@@ -870,15 +674,14 @@ SET GLOBAL wsrep_OSU_method='TOI';
 *  Find out if cluster nodes are in sync
 
 #####  Example configuration
-
-	
-	[Galera-Monitor]
-	type=monitor
-	module=galeramon
-	servers=server1,server2,server3
-	user=myuser
-	password=mypwd
-
+```	
+[Galera-Monitor]
+type=monitor
+module=galeramon
+servers=server1,server2,server3
+user=myuser
+password=mypwd
+```
 
 ### Troubleshooting
 
@@ -921,11 +724,9 @@ SHOW STATUS LIKE 'wsrep_local_recv_queue_avg';
 
 #####  Backup
 
-    
+*  Easiest to be done with xtrabackup  
 
-*  Easiest to be done with mariabackup (Package mariadb-backup in Ubuntu 18.04) 
-
-*  `<code>`
+```
 # --no-timestamp creates no subfolder with the current date (target-dir) 
 
 # Allow it to desync 
@@ -935,13 +736,13 @@ set global wsrep_desync=ON;
 show global status like 'wsrep%';
 DB_USER=sstuser
 DB_USER_PASS=password
-mariabackup --backup  --galera-info --no-timestamp \
+xtrabackup --backup  --galera-info --no-timestamp \
    --target-dir=$MYSQL_BACKUP_DIR \
    --user backup_user --password backup_passwd
 # in mysql-client
 
 set global wsrep_desync=OFF;
-`</code>`
+```
 
 *  Ref: https://mariadb.com/kb/en/library/manual-sst-of-galera-cluster-node-with-mariabackup/
 
@@ -949,9 +750,11 @@ set global wsrep_desync=OFF;
 
 ###  Upgrading Cluster
 
-`<code>`Example Mariadb 10.0 -> 10.1
+``` Example Mariadb 10.0 -> 10.1
+# Same goes for mysql 
+
 https://mariadb.com/kb/en/library/upgrading-from-mariadb-galera-cluster-100-to-mariadb-101/#comment_3101
-`</code>`
+```
 
 ### Exercises
 
@@ -964,9 +767,9 @@ https://mariadb.com/kb/en/library/upgrading-from-mariadb-galera-cluster-100-to-m
 
 
 *  On MaxScale: maxadmin -pmariadb 
-    * `<code>`
+```
 list servers 
-`</code>`
+```
 
 *  Stop one Node 1:
     * on node: systemctl stop mysql
@@ -1007,8 +810,7 @@ list servers
 
 *  Ref: msutic.blogspot.com/2017/10/enable-ssl-encryption-for-mariadb.html 
 
-*  `<code>`
-
+```
 Datum	Heute 12:02
 mkdir -p /etc/mysql/ssl
 cd /etc/mysql/ssl/
@@ -1022,4 +824,4 @@ openssl req -newkey rsa:2048 -days 3600 -nodes -keyout  client-key.pem -out clie
 openssl rsa -in client-key.pem -out client-key.pem
 openssl x509 -req -in client-req.pem -days 3600 -CA  ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem
 openssl verify -CAfile ca-cert.pem server-cert.pem client-cert.pem
-`</code>`
+```
