@@ -166,6 +166,11 @@ date >> /var/log/dbbackup.log
 
 ```
 
+### Alternative with .timers (systemd)
+
+https://kofler.info/systemd-timer-als-cron-alternative/
+
+
 ## 10 MySQL Galera Cluster 
 
 ###  MySQL Galera Cluster Architecture
