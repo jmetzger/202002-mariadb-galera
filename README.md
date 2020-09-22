@@ -25,6 +25,8 @@ We are working with Centos 7 here
   1. Backups 
 
   1. MySQL - Galera - Cluster 
+  
+  1. Misc 
 
 
 ## Installation
@@ -128,7 +130,10 @@ firewall-cmd --reload
 
 https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 
-## MySQL Galera Cluster 
+## 4 Security and user rights 
+
+
+## 10 MySQL Galera Cluster 
 
 ###  MySQL Galera Cluster Architecture
 
@@ -825,3 +830,9 @@ openssl rsa -in client-key.pem -out client-key.pem
 openssl x509 -req -in client-req.pem -days 3600 -CA  ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem
 openssl verify -CAfile ca-cert.pem server-cert.pem client-cert.pem
 ```
+
+### 11 Misc
+
+#### Savepoints 
+
+https://dev.mysql.com/doc/refman/8.0/en/savepoint.html
