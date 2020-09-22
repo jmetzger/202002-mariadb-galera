@@ -137,6 +137,11 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
 ```
 
+## 8 Performance Optimization 
+
+https://www.percona.com/blog/2016/10/12/mysql-5-7-performance-tuning-immediately-after-installation/
+http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
+
 ## 9 Backup 
 
 ### Automation with cron 
