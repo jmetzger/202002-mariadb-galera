@@ -144,6 +144,14 @@ http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
 
 ## 9 Backup 
 
+### Xtrabackup 
+
+```
+# Install repo 
+sudo yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+```
+
+
 ### Automation with cron 
 
 ```
