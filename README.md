@@ -133,6 +133,39 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 ## 4 Security and user rights 
 
 
+## 9 Backup 
+
+### Automation with cron 
+
+```
+#/root/.my.cnf
+[client]
+password=here_my_pass_for_root 
+
+```
+# /etc/cron.daily/backup
+# chmod u+x 
+#!/bin/bash
+
+if [ ! -d /usr/src/backups ]
+then
+  mkdir /usr/src/backups/
+fi
+
+cd /usr/src/backups
+TODAY=$(date +"%Y%m%d%H%M%S")
+echo $TODAY
+mkdir $TODAY
+cd $TODAY
+
+
+mysqldump --all-databases > all-databases.sql
+
+date >> /var/log/dbbackup.log
+
+
+```
+
 ## 10 MySQL Galera Cluster 
 
 ###  MySQL Galera Cluster Architecture
