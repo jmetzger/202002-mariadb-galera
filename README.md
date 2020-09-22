@@ -190,3 +190,86 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 *  The primary focus of Galera Cluster is data consistency across the nodes.
 
 #####  DOES NOT: Application not ready
+
+
+
+*  If application has a lot of hotspots, writing to all nodes will be critical
+
+*  e.g. update counter set counter=counter+1; # Table counter having just one row
+
+*  This will produce a lot of "DEADLOCKS".
+
+##### DOES NOT: InnoDB is not used as engine
+
+
+*  For MariaDB Cluster to work properly InnoDB-Engine is needed
+
+*  MyISAM is currently experimental.. does not support DML's (e.g. INSERT into ....)
+
+#####  DOES NOT: Windows is used
+
+
+*  MariaDB Cluster does not work on Windows
+
+##### DOES NOT: Application heavily uses Query_Cache
+
+
+*  If you heavily rely on Query Cache you should first \\ fix the queries and redesign your application. \\ There is experimental Query Cache support since Galera v3.1. \\ But the Galera documentation clearly states: Do not use query cache..
+
+#####  Refs
+
+
+*  https://www.fromdual.com/limitations-of-galera-cluster
+
+#### Limitations
+
+*  `<code>`"Transaction size. While Galera does not explicitly limit the transaction size, a writeset is processed as a single memory-resident buffer and as a result, extremely large transactions (e.g. LOAD DATA) may adversely affect node performance. To avoid that, the wsrep_max_ws_rows and wsrep_max_ws_size system variables limit transaction rows to 128K and the transaction size to 1Gb by default. If necessary, users may want to increase those limits. Future versions will add support for transaction fragmentation."
+`</code>`
+
+#### Structure of the Configuration
+
+
+*  Discuss the layers.
+
+#### Basic Configuration of the galera cluster
+
+
+*  `<code>`
+# Ubuntu/Debian
+
+# /etc/mysql/conf.d/galera.cnf
+# Centos/Redhat
+
+# /etc/my.cnf.d/99_galera.cnf
+[mysqld]
+binlog_format=ROW
+default-storage-engine=innodb
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0
+
+# Set to 1 sec instead of per transaction
+
+# for better performance // Attention: You might loose data on power outage
+innodb_flush_log_at_trx_commit=0
+
+# Galera Provider Configuration
+
+wsrep_on=ON
+# ubuntu
+
+
+
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+# centos7 (x86_64)
+
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+
+# Galera Cluster Configuration
+
+wsrep_cluster_name="test_cluster"
+wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
+
+# Galera Synchronization Configuration
+
+wsrep_sst_method=rsync
+`</code>`
