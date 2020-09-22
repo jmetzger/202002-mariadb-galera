@@ -223,8 +223,8 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 
 #### Limitations
 
-*  `<code>`"Transaction size. While Galera does not explicitly limit the transaction size, a writeset is processed as a single memory-resident buffer and as a result, extremely large transactions (e.g. LOAD DATA) may adversely affect node performance. To avoid that, the wsrep_max_ws_rows and wsrep_max_ws_size system variables limit transaction rows to 128K and the transaction size to 1Gb by default. If necessary, users may want to increase those limits. Future versions will add support for transaction fragmentation."
-`</code>`
+```"Transaction size. While Galera does not explicitly limit the transaction size, a writeset is processed as a single memory-resident buffer and as a result, extremely large transactions (e.g. LOAD DATA) may adversely affect node performance. To avoid that, the wsrep_max_ws_rows and wsrep_max_ws_size system variables limit transaction rows to 128K and the transaction size to 1Gb by default. If necessary, users may want to increase those limits. Future versions will add support for transaction fragmentation."
+```
 
 #### Structure of the Configuration
 
@@ -234,7 +234,7 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 #### Basic Configuration of the galera cluster
 
 
-*  `<code>`
+```
 # Ubuntu/Debian
 
 # /etc/mysql/conf.d/galera.cnf
@@ -257,8 +257,6 @@ innodb_flush_log_at_trx_commit=0
 wsrep_on=ON
 # ubuntu
 
-
-
 wsrep_provider=/usr/lib/galera/libgalera_smm.so
 # centos7 (x86_64)
 
@@ -272,4 +270,4 @@ wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
 # Galera Synchronization Configuration
 
 wsrep_sst_method=rsync
-`</code>`
+```
