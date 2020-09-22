@@ -132,6 +132,10 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 
 ## 4 Security and user rights 
 
+```
+# All available rights 
+https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
+```
 
 ## 9 Backup 
 
@@ -140,7 +144,8 @@ https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
 ```
 #/root/.my.cnf
 [client]
-password=here_my_pass_for_root 
+password=here_my_pass_for_root
+```
 
 ```
 # /etc/cron.daily/backup
