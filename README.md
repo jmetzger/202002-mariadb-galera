@@ -271,3 +271,76 @@ wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
 
 wsrep_sst_method=rsync
 ```
+
+##### Notes on: innodb_autoinc_lock_mode
+
+
+*  Value 0 and 1 can cause a lot of table-locks
+
+*  Value 2 (=interleaved) allows the system to insert in parallel (better performance)
+    * !! Works only with ROW-Based replication
+
+*  `<code>`From galera manual
+innodb_autoinc_lock_mode=2
+Do not change this value.
+
+Other modes may cause INSERT statements on tables
+with AUTO_INCREMENT columns to fail.
+
+Note Warning: When innodb_autoinc_lock_mode is set
+to traditional lock mode, indicated by 0, or to consecutive lock mode,
+indicated by 1, in Galera Cluster it can cause unresolved deadlocks
+and make the system unresponsive.
+
+`</code>`
+
+#### First going live ;o)
+
+##### Node 1
+
+
+        The first server needs to be started without searching for the other servers
+        # on systemd - systems  it is easy
+        # execute this script
+        # in case mysql is running
+        systemctl stop mysql
+        galera_new_cluster
+        # after that check, if it is running
+        systemctl status mysql
+
+
+##### Node 1: Check cluster size
+
+     mysql -uroot -p
+        show status like 'wsrep_cluster_size';
+        +--------------------+-------+
+        | Variable_name      | Value |
+        +--------------------+-------+
+        | wsrep_cluster_size | 1     |
+        +--------------------+-------+
+        1 row in set (0.001 sec)
+
+
+##### Node 2
+
+
+        # mariadb 10.3 starts server directly after installation
+        # so stop it first
+        systemctl stop mysql
+
+        # galera.cnf configuration must be in place
+        systemctl start mysql
+
+
+##### Node 2: Check status
+
+
+        # Is it part of the cluster now ?
+        # mysql -uroot -p
+        show status like 'wsrep_cluster_size'
+        # is it synced (so it has all the data from the other node
+        show status like 'wsrep_local_state_comment'
+
+
+#####  Node 3
+
