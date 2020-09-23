@@ -403,7 +403,7 @@ In ProxySQL 2.0 galera functionality is well integrated out of the box.
 
 
 ```
-# Use yum-repo from codershiper
+# Use yum-repo from codership
 # just to be sure we have the same version 
 sudo yum install mysql-client (?) 
 ```
@@ -571,7 +571,7 @@ password=mypwd
 
 *  Sometimes we need to identify the slowest node
 
-*  `<code>`
+```
 # Node sent a pause event to the cluster when it was behind 
 
 SHOW STATUS LIKE 'wsrep_flow_control_sent'; 
@@ -585,7 +585,7 @@ SHOW STATUS LIKE 'wsrep_local_recv_queue_avg';
  | wsrep_local_recv_queue_avg | 3.34852 | 
  | -------------------------- | ------- | 
 +----------------------------+---------+
-`</code>`
+```
 
 *  Ref: http://galeracluster.com/documentation-webpages/detectingaslownode.html
 
