@@ -24,7 +24,7 @@ We are working with Centos 7 here
 
   1. Backup und Restore 
 
-  1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster){:target="_blank"}
+  1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
   1. [Misc](#11-misc) 
 
