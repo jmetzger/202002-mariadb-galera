@@ -125,16 +125,13 @@ innodb_flush_log_at_trx_commit=0
 # Galera Provider Configuration
 
 wsrep_on=ON
-# ubuntu
 
-wsrep_provider=/usr/lib/galera/libgalera_smm.so
-# centos7 (x86_64)
-
-wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+# codership / mysql 8 
+wsrep_provider=/usr/lib64/galera-4/libgalera_smm.so
 
 # Galera Cluster Configuration
 
-wsrep_cluster_name="test_cluster"
+wsrep_cluster_name="test_cluster_"
 wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
 
 # Galera Synchronization Configuration
