@@ -19,7 +19,6 @@
 
 ###### State Snaphost Transfer (SST)
 
-
 *  Full Transfer is done
 
 *  Methods: rsync, xtrabackup, mariadback, mysqldump, rsync
@@ -35,7 +34,6 @@
     * Otherwice SST is done
 
 ##### Global Transaction Number
-
 
 *  Global Transaction ID
 
@@ -105,10 +103,9 @@
 
 
 ```
-# Ubuntu/Debian
-
-# /etc/mysql/conf.d/galera.cnf
-# Centos/Redhat
+# centos 7 with mysql from codership 
+# Seems not be there in last line 
+echo "!includedir /etc/my.cnf.d/" >> /etc/my.cnf 
 
 # /etc/my.cnf.d/99_galera.cnf
 [mysqld]
@@ -165,13 +162,17 @@ and make the system unresponsive.
 
 ##### Node 1
 
-
         The first server needs to be started without searching for the other servers
         # on systemd - systems  it is easy
         # execute this script
         # in case mysql is running
         systemctl stop mysql
-        galera_new_cluster
+        # For mariadb galera cluster
+	# galera_new_cluster
+	
+	# Codership MySQL 8 with wsrep path 
+	/usr/sbin/mysqld_bootstrap 
+	
         # after that check, if it is running
         systemctl status mysql
 
