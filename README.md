@@ -24,9 +24,9 @@ We are working with Centos 7 here
 
   1. Backup und Restore 
 
-  1. MySQL - Galera - Cluster 
+  1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
-  1. Misc 
+  1. [Misc](#misc) 
 
 
 ## Installation
