@@ -6,7 +6,7 @@
 
 ##### Overview
 
-{{ ::replicationapi.png?nolink&300 |}}
+![Overview](images/replicationapi.png)
 
 #####  State Changes (e.g. Update of data)
 
