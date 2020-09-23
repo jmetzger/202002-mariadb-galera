@@ -8,7 +8,7 @@ We are working with Centos 7 here
 
   1. Architecture of the MySQL - Server
  
-  1. [Installation](#installation)
+  1. [Installation](#2-installation)
 
   1. Configuration
  
@@ -26,10 +26,10 @@ We are working with Centos 7 here
 
   1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
-  1. [Misc](#misc) 
+  1. [Misc](#11-misc) 
 
 
-## Installation
+## 2-Installation
 
 ### 2.1 Centos 7 - Repo - Configuration  
 
