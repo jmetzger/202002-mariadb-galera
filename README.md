@@ -22,7 +22,7 @@ We are working with Centos 7 here
 
   1. Performance Optimization 
 
-  1. Backups 
+  1. Backup und Restore 
 
   1. MySQL - Galera - Cluster 
   
@@ -142,7 +142,11 @@ https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
 https://www.percona.com/blog/2016/10/12/mysql-5-7-performance-tuning-immediately-after-installation/
 http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
 
-## 9 Backup 
+## 9 Backup und Restore
+
+### Import csv-data 
+
+https://www.mysqltutorial.org/import-csv-file-mysql-table/
 
 ### Xtrabackup 
 
