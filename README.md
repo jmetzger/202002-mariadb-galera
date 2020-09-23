@@ -8,7 +8,7 @@ We are working with Centos 7 here
 
   1. Architecture of the MySQL - Server
  
-  1. Installation
+  1. [Installation](#installation)
 
   1. Configuration
  
