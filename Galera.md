@@ -636,42 +636,42 @@ https://mariadb.com/kb/en/library/upgrading-from-mariadb-galera-cluster-100-to-m
 ####  Stop one node / Master ?
 
 
-*  On MaxScale: maxadmin -pmariadb 
+  *  On MaxScale: maxadmin -pmariadb 
 ```
 list servers 
 ```
 
-*  Stop one Node 1:
-    * on node: systemctl stop mysql
+  *  Stop one Node 1:
+     * on node: systemctl stop mysql
 
-*  On MaxScale:
-
+  *  On MaxScale:
+```
 	
 	# Who is the master now ? (Master Stickiness) 
 	# 
 	maxadmin -pmariadb list servers 
-
+```
 
 ####  Restart one node (down) -> Master ?
 
 
-*  On MaxScale
-
+  *  On MaxScale
+```
 	
 	maxadmin -pmariadb list servers 
-
-
-*  On node 
-
 	
+```
+
+  *  On node 
+```
 	systemctl start mysql 
+```
 
-
-*  On MaxScale
-
-	
+  *  On MaxScale
+  
+```
 	maxadmin -pmariadb list servers
-
+```
 
 ### Misc
 
