@@ -287,16 +287,17 @@ mysql -uroot -p
 
 ##### Setup (Part 1: MaxScale db-user)
 
+        # IP FROM MAXSCALE
 	# Setup privileges on cluster nodes
 	# It is sufficient to set it on one node, because 
 	# it will be synced to all the other nodes
 	# on node 1 
-	CREATE USER 'maxscale'@'%' IDENTIFIED BY 'password';
-	GRANT SELECT ON mysql.db TO 'maxscale'@'%';
-	GRANT SELECT ON mysql.user TO 'maxscale'@'%';
-	GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'%';
+	CREATE USER 'maxscale'@'10.10.11.139' IDENTIFIED BY 'P@ssw0rd';
+	GRANT SELECT ON mysql.db TO 'maxscale'@'10.10.11.139';
+	GRANT SELECT ON mysql.user TO 'maxscale'@'10.10.11.139';
+	GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'10.10.11.139';
 	
-	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'%';
+	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
 
 ##### Setup (Part 2: Configuration)
 
