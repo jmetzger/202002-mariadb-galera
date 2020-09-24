@@ -54,7 +54,7 @@ gpgcheck = 1
 ### 2.2 Installation 
 
 ```
-yum install galera-4 and mysql-wsrep-8.0
+yum install galera-4 and mysql-wsrep-8.0 rsync
 # Show service mysql
 systemctl list-unit-files -t service | grep mysql
 systemctl start mysqld.service 
