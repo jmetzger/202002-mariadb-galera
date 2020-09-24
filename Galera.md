@@ -307,6 +307,13 @@ mysql -uroot -p
 	
 	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
 
+##### Attention: On all nodes this needs be done 
+
+```
+[mysqld]
+default-authentication-plugin=mysql_native_password
+```
+
 ##### Setup (Part 2: Configuration)
 
 
