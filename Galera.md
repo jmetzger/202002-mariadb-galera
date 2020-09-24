@@ -293,9 +293,17 @@ mysql -uroot -p
 	# it will be synced to all the other nodes
 	# on node 1 
 	CREATE USER 'maxscale'@'10.10.11.139' IDENTIFIED BY 'P@ssw0rd';
+	#
+	ALTER USER 'maxscale'@'10.10.11.139' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
+	#
 	GRANT SELECT ON mysql.db TO 'maxscale'@'10.10.11.139';
 	GRANT SELECT ON mysql.user TO 'maxscale'@'10.10.11.139';
 	GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'10.10.11.139';
+	#
+	GRANT SELECT ON mysql.columns_priv TO 'maxscale'@'10.10.11.139';
+	GRANT SELECT ON mysql.proxies_priv TO 'maxscale'@'10.10.11.139';
+	#
+	
 	
 	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
 
