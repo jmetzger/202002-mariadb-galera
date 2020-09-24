@@ -310,6 +310,7 @@ mysql -uroot -p
 ##### Attention: On all nodes this needs be done 
 
 ```
+# /etc/my.cnf.d/99_galera.cnf 
 [mysqld]
 default-authentication-plugin=mysql_native_password
 ```
