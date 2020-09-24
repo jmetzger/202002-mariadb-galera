@@ -6,6 +6,11 @@
     * mysql_secure_installation 
   * Sehr restriktives Anlegen von Benutzern
     * Benutzer nur von bestimmten IP's mit Zugriff zu bestimmter Datenbank/mehrere Datenbanken 
+    * keine Wildcard benutzer, 
+      * z.B. user@'%' 
+      * oder: 'tabl%'@'%'
+    * erlaubt:
+      * user@'10.10.11.%'
   * Firewall absichern (nur Nutzer/Applikationen von bestimmten IP's dürfen auf den Server zugreifen 
     * nur Zugriff von den Applikations-Servern (IP-Adressen) 
     
@@ -26,4 +31,6 @@ iptables -A OUTPUT -p tcp -s 10.10.11.124 --sport 3306 -d 10.10.11.120 --dport 1
   * MaxScale 
     * Nur den 3306-Port für Anfragen von dedizierten App-Servern öffnen, die in der DMZ stehen 
     * keine WebUI nach draussen
-    * keine anderen Port nach draussen auf. 
+    * keine anderen Port nach draussen auf.
+  * Achtung: readwritesplit kann nicht mit wildcard-Benutzern arbeiten: z.B. user@'%'
+    * Wildcards ip's gehen aber: user@'10.10.11.%'
