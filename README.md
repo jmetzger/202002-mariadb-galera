@@ -173,6 +173,17 @@ firewall-cmd --list-all-zones | grep -A10 "public"
 
 ```
 
+## 2.5 Add second node 
+
+```
+# like 2.4, but no galera_new_cluster 
+# instead
+systemctl start mariadb
+# see logs of connecting 
+journalctl -u mariadb 
+```
+
+
 ## 3 Configuration 
 
 ### Best source 
