@@ -51,12 +51,23 @@ gpgcheck=1
 ```
 # dnf install mariadb # only installs the client 
 dnf install mariadb-server 
-systemctl list-unit-files -t service | grep mysql
-systemctl start mysqld.service 
-systemctl status mysqld.service 
+# see what is installed 
+rpm -qa | grep -i mariadb 
+systemctl list-unit-files -t service | grep mariadb
+systemctl status mariadb 
+systemctl start mariadb 
+systemctl status mariadb 
+
+# shows port mariadb is listening 
+
 # Nicht beim Starten vom Server starten 
 systemctl disable mysqld.service 
 systemctl enable mysqld.service 
+
+# is service listening 
+lsof -i
+cat /etc/services | grep mysql
+
 
 # get the temporary password 
 cat /var/log/mysqld.log | grep "password.*generated"
