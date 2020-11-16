@@ -27,6 +27,8 @@ We are working with Centos 7 here
   1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
   1. [Misc](#11-misc) 
+  
+  1. [Documentation](#12-Documentation) 
 
 
 ## 1-Architecture 
@@ -281,3 +283,10 @@ https://kofler.info/systemd-timer-als-cron-alternative/
 #### Savepoints 
 
 https://dev.mysql.com/doc/refman/8.0/en/savepoint.html
+
+
+### 12 Documentation 
+
+#### Server System Variables 
+
+https://mariadb.com/kb/en/server-system-variables/
