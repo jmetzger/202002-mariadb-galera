@@ -33,22 +33,10 @@ We are working with Centos 7 here
 
 ### 2.1 Centos 7 - Repo - Configuration  
 
-  * https://galeracluster.com/library/documentation/install-mysql.html
-
 ```
-# /etc/yum.repos.d/galera.repo
-[galera]
-name = Galera
-baseurl = https://releases.galeracluster.com/galera-4/centos/7/x86_64/
-gpgkey = https://releases.galeracluster.com/GPG-KEY-galeracluster.com
-gpgcheck = 1
-
-[mysql-wsrep]
-name = MySQL-wsrep
-baseurl =  https://releases.galeracluster.com/mysql-wsrep-8.0/centos/7/x86_64/
-gpgkey = https://releases.galeracluster.com/GPG-KEY-galeracluster.com
-gpgcheck = 1
-
+wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+chmod +x mariadb_repo_setup
+./mariadb_repo_setup
 ```
 
 ### 2.2 Installation 
