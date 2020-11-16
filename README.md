@@ -328,3 +328,16 @@ https://dev.mysql.com/doc/refman/8.0/en/savepoint.html
 show variables like 'wsrep%' \G
 show status like 'wsrep%' \G
 ```
+
+### 13 Performance 
+
+```
+innodb_flush_log_at_trx_commit = 2
+# up to 75x faster 
+https://dba.stackexchange.com/questions/12611/is-it-safe-to-use-innodb-flush-log-at-trx-commit-2/56673#56673
+
+innodb_flush_method = O_DIRECT_NO_FSYNC
+# Not suitable for XFS filesystems.
+
+# recommendation from galera 
+innodb_autoinc_lock_mode = 2 
