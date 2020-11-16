@@ -1,4 +1,4 @@
-# MariaDB - Administration / Galera - Training
+# MariaDB - Administration / Galera - Training (Centos 8)
 
 ```
 We are working with Centos 7 here 
@@ -77,6 +77,32 @@ cat /var/log/mysqld.log | grep "password.*generated"
 # findout if mysql listen to the outside
 # look for *:mysql
 lsof -i 
+```
+
+### 2.2.1 Configuration /etc/my.cnf.d/z_galera.cnf 
+
+```
+[mysqld]
+binlog_format=ROW
+default-storage-engine=innodb
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0
+# Set to 1 sec instead of per transaction
+# for better performance // Attention: You might loose data on power
+outage
+innodb_flush_log_at_trx_commit=0
+# Galera Provider Configuration
+wsrep_on=ON
+# ubuntu
+wsrep_provider=/usr/lib/galera/libgalera_smm.so
+# centos7 (x86_64)
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+# Galera Cluster Configuration
+wsrep_cluster_name="test_cluster"
+wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
+# Galera Synchronization Configuration
+wsrep_sst_method=rsync
+
 ```
 
 ### 2.3 Configuration SELinux  
