@@ -341,3 +341,12 @@ innodb_flush_method = O_DIRECT_NO_FSYNC
 
 # recommendation from galera 
 innodb_autoinc_lock_mode = 2 
+
+```
+
+### 14 Simulations 
+
+```
+for i in  3306 4444 4567 4568 ; do firewall-cmd --remove-port=$i/tcp; done
+firewall-cmd --remove-port=4567/udp 
+
