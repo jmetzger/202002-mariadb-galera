@@ -29,6 +29,17 @@ We are working with Centos 7 here
   1. [Misc](#11-misc) 
 
 
+## 1-Architecture 
+ 
+### 1.2. Ports used
+
+```
+3306 is the default port for MySQL client connections and State Snapshot Transfer using mysqldump for backups.
+4567 is reserved for Galera Cluster replication traffic. Multicast replication uses both TCP and UDP transport on this port.
+4568 is the port for Incremental State Transfer.
+4444 is used for all other State Snapshot Transfer.
+```
+
 ## 2-Installation
 
 ### 2.1 Centos 7 - Repo - Configuration  
@@ -144,11 +155,12 @@ systemctl stop firewalld
 
 ```
 # Option 2
+https://galeracluster.com/library/documentation/firewalld.html
+
 # redundant - next line
 # firewall-cmd --zone=public --add-service=mysql --permanent
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 firewall-cmd --zone=public --add-port=4444/tcp --permanent
-firewall-cmd --zone=public --add-port=4567/tcp --permanent
 firewall-cmd --zone=public --add-port=4567/udp --permanent
 firewall-cmd --zone=public --add-port=4568/tcp --permanent
 firewall-cmd --reload
