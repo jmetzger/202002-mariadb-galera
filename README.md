@@ -1,4 +1,4 @@
-# MySQL - Administration / Galera - Training (codership)  
+# MariaDB - Administration / Galera - Training
 
 ```
 We are working with Centos 7 here 
