@@ -289,4 +289,9 @@ https://dev.mysql.com/doc/refman/8.0/en/savepoint.html
 
 #### Server System Variables 
 
-https://mariadb.com/kb/en/server-system-variables/
+ * https://mariadb.com/kb/en/server-system-variables/
+
+```
+show variables like 'wsrep%' \G
+show status like 'wsrep%' \G
+```
