@@ -165,6 +165,9 @@ firewall-cmd --zone=public --add-port=4567/udp --permanent
 firewall-cmd --zone=public --add-port=4567/tcp --permanent
 firewall-cmd --zone=public --add-port=4568/tcp --permanent
 firewall-cmd --reload
+# did this work ? 
+firewall-cmd --list-all-zones | grep -A10 "public"
+
 ```
 
 ## 3 Configuration 
