@@ -183,6 +183,27 @@ systemctl start mariadb
 journalctl -u mariadb 
 ```
 
+## 2.5.1. Step-by-Step 2nd Node 
+
+```
+Schritt 1: z_galera.cnf rüberschieben (von Server 1) 
+Schritt 2: plugin -eintrag ändern -4 raus
+Schritt 3: galera.cnf umbenennen galera.cnf.NOT (aus Installation 10.3, wenn vorhanden) 
+Schritt 4: 
+semanage permissive -a mysqld_t
+
+Schritt 5: Firewall - Regeln eintragen
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --zone=public --add-port=4444/tcp --permanent
+firewall-cmd --zone=public --add-port=4567/udp --permanent
+firewall-cmd --zone=public --add-port=4567/tcp --permanent
+firewall-cmd --zone=public --add-port=4568/tcp --permanent
+firewall-cmd --reload
+
+Schritt 6: Server mit: systemctl.stop mariadb;  systemctl start mariadb 
+Schritt 7: Überprüfung: mysql  show status like ‚wsrep%‘ # guckst cluster_size 
+```
+
 
 ## 3 Configuration 
 
