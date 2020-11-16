@@ -33,10 +33,17 @@ We are working with Centos 7 here
 
 ### 2.1 Centos 7 - Repo - Configuration  
 
+  * configure repo on: https://mariadb.org/download/#mariadb-repositories
+
 ```
-wget https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-chmod +x mariadb_repo_setup
-./mariadb_repo_setup
+# MariaDB 10.4 CentOS repository list - created 2020-11-16 09:56 UTC
+# https://mariadb.org/download/
+[mariadb]
+name = MariaDB
+baseurl = http://mirror.23media.de/mariadb/yum/10.4/centos8-amd64
+module_hotfixes=1
+gpgkey=http://mirror.23media.de/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgcheck=1
 ```
 
 ### 2.2 Installation 
