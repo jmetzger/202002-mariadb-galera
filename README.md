@@ -49,7 +49,8 @@ gpgcheck=1
 ### 2.2 Installation 
 
 ```
-dnf install mariadb 
+# dnf install mariadb # only installs the client 
+dnf install mariadb-server 
 systemctl list-unit-files -t service | grep mysql
 systemctl start mysqld.service 
 systemctl status mysqld.service 
