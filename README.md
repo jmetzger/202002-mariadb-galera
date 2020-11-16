@@ -1,7 +1,7 @@
 # MariaDB - Administration / Galera - Training (Centos 8)
 
 ```
-We are working with Centos 7 here 
+We are working with Centos 8 here 
 ```
 
 ## Agenda 
