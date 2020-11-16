@@ -142,6 +142,7 @@ yum install setools
 # semanage port -a -t mysqld_port_t -p tcp 3306
 # semanage port -a -t mysqld_port_t -p tcp 4444
 # semanage port -a -t mysqld_port_t -p tcp 4567
+# semanage port -a -t mysqld_port_t -p udp 4567 
 # semanage port -a -t mysqld_port_t -p tcp 4568
 semanage permissive -a mysqld_t
 ```
