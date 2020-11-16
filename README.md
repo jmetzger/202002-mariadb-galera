@@ -49,8 +49,7 @@ gpgcheck=1
 ### 2.2 Installation 
 
 ```
-yum install galera-4 and mysql-wsrep-8.0 rsync
-# Show service mysql
+dnf install mariadb 
 systemctl list-unit-files -t service | grep mysql
 systemctl start mysqld.service 
 systemctl status mysqld.service 
