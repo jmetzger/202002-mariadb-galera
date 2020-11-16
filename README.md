@@ -162,6 +162,7 @@ https://galeracluster.com/library/documentation/firewalld.html
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 firewall-cmd --zone=public --add-port=4444/tcp --permanent
 firewall-cmd --zone=public --add-port=4567/udp --permanent
+firewall-cmd --zone=public --add-port=4567/tcp --permanent
 firewall-cmd --zone=public --add-port=4568/tcp --permanent
 firewall-cmd --reload
 ```
