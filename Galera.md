@@ -1,31 +1,29 @@
-## 10 MySQL Galera Cluster 
+# 10 MySQL Galera Cluster 
 
-###  MySQL Galera Cluster Architecture
+##  MySQL Galera Cluster Architecture
 
-#### Technical Structure of the cluster
+### Technical Structure of the cluster
 
-##### Overview
+#### Overview
 
 ![Overview](images/replicationapi.png)
 
-#####  State Changes (e.g. Update of data)
+####  State Changes (e.g. Update of data)
 
  1.  On one node in the cluster, a state change occurs on the database.
  2.  In the database, the wsrep hooks translate the changes to the write-set.
  3.  dlopen() makes the wsrep provider functions available to the wsrep hooks.
  4.  The Galera Replication plugin handles write-set certification and replication to the cluster
 
-##### SST / IST
+#### SST / IST
 
-###### State Snaphost Transfer (SST)
+##### State Snaphost Transfer (SST)
 
-*  Full Transfer is done
+  *  Full Transfer is done
+  *  Methods: rsync, xtrabackup, mariadback, mysqldump, rsync
+  *  Some are blocking, some are not (let's see later)
 
-*  Methods: rsync, xtrabackup, mariadback, mysqldump, rsync
-
-*  Some are blocking, some are not (let's see later)
-
-###### Incremental State Transfer (IST)
+##### Incremental State Transfer (IST)
 
 *  A node only receives the missing write sets.
 
@@ -33,7 +31,7 @@
     * The missing write-sets are in the gcache of the donor
     * Otherwice SST is done
 
-##### Global Transaction Number
+#### Global Transaction Number
 
 *  Global Transaction ID
 
