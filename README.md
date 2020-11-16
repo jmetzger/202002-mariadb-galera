@@ -34,10 +34,10 @@ We are working with Centos 7 here
 ### 2.1 Centos 7 - Repo - Configuration  
 
   * configure repo on: https://mariadb.org/download/#mariadb-repositories
+  * write configuration below into /etc/yum.repos.d/mariadb.repo
 
 ```
-# MariaDB 10.4 CentOS repository list - created 2020-11-16 09:56 UTC
-# https://mariadb.org/download/
+# write into /etc/yum.repos.d/mariadb.repo 
 [mariadb]
 name = MariaDB
 baseurl = http://mirror.23media.de/mariadb/yum/10.4/centos8-amd64
