@@ -93,15 +93,14 @@ outage
 innodb_flush_log_at_trx_commit=0
 # Galera Provider Configuration
 wsrep_on=ON
-# ubuntu
-wsrep_provider=/usr/lib/galera/libgalera_smm.so
-# centos7 (x86_64)
-wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+# centos8 (x86_64)
+wsrep_provider=/usr/lib64/galera-4/libgalera_smm.so
 # Galera Cluster Configuration
-wsrep_cluster_name="test_cluster"
-wsrep_cluster_address="gcomm://first_ip,second_ip,third_ip"
+wsrep_cluster_name="test_cluster_jm"
+wsrep_cluster_address="gcomm://10.10.11.141,10.10.11.166,10.10.11.170"
 # Galera Synchronization Configuration
 wsrep_sst_method=rsync
+
 
 ```
 
