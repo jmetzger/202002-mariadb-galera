@@ -41,6 +41,8 @@ We are working with Centos 8 here
   1. [Server konfigurieren (Start/stop und Laufzeit)](server-configuration.md) 
   
   1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
+  
+  1. [License MaxScale](#License-Maxscale)
 
 ## 2-Installation
 
@@ -349,4 +351,9 @@ innodb_autoinc_lock_mode = 2
 ```
 for i in  3306 4444 4567 4568 ; do firewall-cmd --remove-port=$i/tcp; done
 firewall-cmd --remove-port=4567/udp 
+
+### License Maxscale 
+
+https://fossies.org/linux/MaxScale/LICENSE.TXT
+up to 2 nodes (less than 3 without license fee) 
 
