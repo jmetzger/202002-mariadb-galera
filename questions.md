@@ -275,3 +275,4 @@ Refer to: https://lists.launchpad.net/maria-discuss/msg02698.html
 ## Frage 14: problem with wsrep has not yet prepare 
 
 https://stackoverflow.com/questions/40653238/mariadb-galera-error-when-a-node-shutdown-error-1047-wsrep-has-not-yet-prepare
+https://dba.stackexchange.com/questions/255100/single-node-stuck-in-wsrep-has-not-yet-prepared-node-for-application-use
