@@ -175,6 +175,8 @@ Version 3.6
 
 When you enable this parameter, the node triggers causality checks in response to certain types of queries. During the check, the node blocks new queries while the database server catches up with all updates made in the cluster to the point where the check was begun. Once it reaches this point, the node executes the original query.
 
+Ref: https://www.percona.com/blog/2017/04/22/beware-increasing-fc_limit-can-affect-select-latency/
+
 ## Frage 9: Richtige Werte für Performance Optimierung: 
 
 ```
