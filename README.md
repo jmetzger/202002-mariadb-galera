@@ -33,6 +33,8 @@ We are working with Centos 8 here
   1. [Schema Upgrades](schema-upgrades.md)
   
   1. [Backup with Arbitrator aka garbd](garbd-backup.md)
+  
+  1. [Find good gcache-size](determine-gcache.md) 
 
 ## 2-Installation
 
