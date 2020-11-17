@@ -14,5 +14,5 @@ mysql> ALTER TABLE sbtest1.sbtest1 ADD INDEX idx_new (k, c);
 Query OK, 0 rows affected (5 min 19.59 sec)
 ```
 
-RSU automatically switched the local node to Donor/Desynced state, to ensure it will not impact
+RSU automatically switches the local node to Donor/Desynced state, to ensure it will not impact
 the rest of the cluster
