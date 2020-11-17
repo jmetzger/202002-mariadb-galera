@@ -31,6 +31,8 @@ We are working with Centos 8 here
   1. [Documentation](#12-Documentation) 
   
   1. [Schema Upgrades](schema-upgrades.md)
+  
+  1. [Backup with Arbitrator aka garbd](garbd-backup.md)
 
 ## 2-Installation
 
