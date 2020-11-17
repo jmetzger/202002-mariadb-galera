@@ -41,9 +41,7 @@
 
 #####  gcache(=write-set-cache) ==
 
-
 *  Cache to save writesets
-
 *  Used to perform IST
 
 #### How do out-of-sync Nodes resynchronize ?
@@ -52,24 +50,17 @@
 
 ##### PRE-Requisite
 
-
 *  The primary focus of Galera Cluster is data consistency across the nodes.
 
 #####  DOES NOT: Application not ready
 
-
-
 *  If application has a lot of hotspots, writing to all nodes will be critical
-
 *  e.g. update counter set counter=counter+1; # Table counter having just one row
-
 *  This will produce a lot of "DEADLOCKS".
 
 ##### DOES NOT: InnoDB is not used as engine
 
-
 *  For MariaDB Cluster to work properly InnoDB-Engine is needed
-
 *  MyISAM is currently experimental.. does not support DML's (e.g. INSERT into ....)
 
 #####  DOES NOT: Windows is used
@@ -251,22 +242,15 @@ mysql -uroot -p
 #### The MaxScale load-balancer and its components
 
 *  Listeners 
-
 *  Filters
-    * http://galeracluster.com/documentation-webpages/backingupthecluster.html
-
 *  Servers (backend database server)
 
 #####  Filters
 
 *  Logging Filters
-
 *  Statement rewriting filters
-
 *  Result set manipulation filters 
-
 *  Firewill filter
-
 *  Pipeline control filters
     * e.g. tee and send to a second server
 
@@ -285,25 +269,25 @@ mysql -uroot -p
 
 ##### Setup (Part 1: MaxScale db-user)
 
-        # IP FROM MAXSCALE
-	# Setup privileges on cluster nodes
-	# It is sufficient to set it on one node, because 
-	# it will be synced to all the other nodes
-	# on node 1 
-	CREATE USER 'maxscale'@'10.10.11.139' IDENTIFIED BY 'P@ssw0rd';
-	#
-	ALTER USER 'maxscale'@'10.10.11.139' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
-	#
-	GRANT SELECT ON mysql.db TO 'maxscale'@'10.10.11.139';
-	GRANT SELECT ON mysql.user TO 'maxscale'@'10.10.11.139';
-	GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'10.10.11.139';
-	#
-	GRANT SELECT ON mysql.columns_priv TO 'maxscale'@'10.10.11.139';
-	GRANT SELECT ON mysql.proxies_priv TO 'maxscale'@'10.10.11.139';
-	#
-	
-	
-	GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
+```bash
+# IP FROM MAXSCALE
+# Setup privileges on cluster nodes
+# It is sufficient to set it on one node, because 
+# it will be synced to all the other nodes
+# on node 1 
+CREATE USER 'maxscale'@'10.10.11.139' IDENTIFIED BY 'P@ssw0rd';
+#
+ALTER USER 'maxscale'@'10.10.11.139' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
+#
+GRANT SELECT ON mysql.db TO 'maxscale'@'10.10.11.139';
+GRANT SELECT ON mysql.user TO 'maxscale'@'10.10.11.139';
+GRANT SELECT ON mysql.tables_priv TO 'maxscale'@'10.10.11.139';
+#
+GRANT SELECT ON mysql.columns_priv TO 'maxscale'@'10.10.11.139';
+GRANT SELECT ON mysql.proxies_priv TO 'maxscale'@'10.10.11.139';
+#
+GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
+```
 
 ##### Attention: On all nodes this needs be done 
 
