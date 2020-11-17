@@ -14,6 +14,7 @@ https://fromdual.com/gcache_size_in_galera_cluster
 wsrep_provider_options="gcache.size=256M"
 ```
 
+```
 Hold time = GCache size / Replication Rate.
 Where:
 		Replication Rate = Amount of replicated data / time. (ime in seconds)
@@ -23,6 +24,8 @@ Now, we can find out how much GCache (default 128M) can handle for the customer'
 Hold time = 128MB / (7200MB / 4h) = 128MB / 0.5 MB = 256s.
 Then, we can calculate the right GCache size value to handle the maintenance window by the following formula: GCache = Maintenance window * Replication Rate = 14400s * 0.5 MB. GCache = 7200MB.
 In other words, the right GCache size should be equivalent to (or not less than) the amount of replicated data.
+```
+
 
 ## Frage 2: What does OSU-Method: TOI and OSU-Method: RSU mean ?
 
