@@ -35,6 +35,8 @@ We are working with Centos 8 here
   1. [Backup with Arbitrator aka garbd](garbd-backup.md)
   
   1. [Find good gcache-size](determine-gcache.md) 
+  
+  1. [Handling bei Stromausfall](galera-stromausfall.md) 
 
 ## 2-Installation
 
