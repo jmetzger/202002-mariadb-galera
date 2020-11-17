@@ -351,7 +351,7 @@ innodb_autoinc_lock_mode = 2
 ```
 for i in  3306 4444 4567 4568 ; do firewall-cmd --remove-port=$i/tcp; done
 firewall-cmd --remove-port=4567/udp 
-
+```
 ### License Maxscale 
 
 https://fossies.org/linux/MaxScale/LICENSE.TXT
