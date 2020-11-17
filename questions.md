@@ -131,13 +131,15 @@ rtt min/avg/max/mdev = 0.270/0.841/1.047/0.331 ms
 
 => hier: durchschnittlich: rtt avg = 0.84 ms 
 
+```
 Q: The network RTT between my servers is 100ms. I know that each commit takes at least as much time as a network RTT so can I only hope to run 10 writes/s?
 This needs some clarification: commit is synchronous because the full transaction is replicated to all nodes when it is committed. However you pay the same price whether the transaction has a single statements or several statements.
 So if all your writes are auto-committed transactions, each write will trigger a commit that will need at least one RTT to complete. If RTT is 100ms, that means 10 writes/s.
 But if your transactions have 10 writes, you will only need a commit every 10 writes: with 10 commits/s, you can now run 100 writes/s.
 And finally several threads can commit at the same time, increasing the write throughput. With 10 concurrent threads executing transactions with 10 statements, you get 1000 writes/s.
 Of course, this is only theory. In the real world, you will probably not get so perfectly aligned numbers. You can look at this post (Comparing Percona XtraDB Cluster with Semi-Sync replication Cross-WAN) to see real numbers with 1 thread and 32 threads.
-Conclusion: network latency is a limiting factor for write throughput, that’s true. But that may not be as bad as you can think. And remember Callaghan’s law: “In a Galera cluster a given row can’t be modified more than once per RTT”.
+Conclusion: network latency is a limiting factor for write throughput, that’s true. But that may not be as bad as you can think. And remember Callaghan’s law: “In a Galera cluster a given row can’t be modified more than once per RTT”.
+```
 
 ## Frage 7: Wie funktioniert flow control:
 
