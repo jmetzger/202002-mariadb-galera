@@ -102,14 +102,8 @@ Ref: https://www.claudiokuenzler.com/blog/887/comparing-galera-wsrep-sst-methods
 https://severalnines.com/database-blog/monitoring-galera-cluster-mysql-or-mariadb-understanding-metrics-updated
 
 ```
-	•	wsrep_local_send_queue - current state of the send queue
-	•	wsrep_local_send_queue_min - minimum since FLUSH STATUS
-	•	wsrep_local_send_queue_max - maximum since FLUSH STATUS
-	•	wsrep_local_send_queue_avg - average since FLUSH STATUS
-	•	wsrep_local_recv_queue - current state of the receive queue
-	•	wsrep_local_recv_queue_min - minimum since FLUSH STATUS
-	•	wsrep_local_recv_queue_max - maximum since FLUSH STATUS
-	•	wsrep_local_recv_queue_avg - average since FLUSH STATUS
+wsrep_local_send_queue
+wsrep_local_recv_queue
 ```
 
 Important: wsrep_local_recv_queue
