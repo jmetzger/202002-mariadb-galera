@@ -85,7 +85,7 @@ Refer to:
 https://www.percona.com/blog/2019/03/25/how-to-perform-compatible-schema-changes-in-percona-xtradb-cluster-advanced-alternative/
 
 Alternaive: Manual rsu:
- GLOBAL wsrep_desync=1;
+SET GLOBAL wsrep_desync=1;
 SET wsrep_on=0;
 ALTER ...  /* compatible schema change only! */
 SET wsrep_on=1;
@@ -207,11 +207,14 @@ Wichtig: Die node muss desynchrnoisiert werden, bevor ich Backups mache:
 
 ```
 Variante 1:
-mysql -p -u root --execute "SET wsrep_desync = ON"
+mysql -p -u root --execute "SET GLOBAL wsrep_desync = ON; SET GLOBAL wsrep_on='off'"
 Dann:
 mysqldump -p -u admin_backup \
           --flush-logs --all-databases \
           > /backups/db-backup-20191025.sql
+
+mysql -p -u root --execute "SET GLOBAL wsrep_on='on'; SET GLOBAL wsrep_desync = OFF"
+
 ```
 
 ```
@@ -228,8 +231,10 @@ cp -r /etc/my.cnf* /backups/temp/
 Variante 3: 
 Using garbd
 Refer to: 
-
+https://galeracluster.com/library/training/tutorials/galera-backup.html
 ```
+
+
 
 ## Frage 12: How does mariadb galera cluster work with mysql_upgrade and RSU 
 
