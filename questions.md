@@ -102,12 +102,9 @@ Ref: https://www.claudiokuenzler.com/blog/887/comparing-galera-wsrep-sst-methods
 https://severalnines.com/database-blog/monitoring-galera-cluster-mysql-or-mariadb-understanding-metrics-updated
 
 ```
-wsrep_local_send_queue
-wsrep_local_recv_queue
+wsrep_local_send_queue_avg
+wsrep_local_recv_queue_avg
 ```
-
-Important: wsrep_local_recv_queue
-wsrep_local_send_queue
 
 ## Frage 5: Keine Frage aber ein sehr guter Read:
 https://www.percona.com/blog/2014/11/17/typical-misconceptions-on-galera-for-mysql/
