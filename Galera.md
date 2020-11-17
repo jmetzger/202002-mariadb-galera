@@ -1,6 +1,6 @@
-# 10 MySQL Galera Cluster 
+# 10 MariaDB Galera Cluster 
 
-##  MySQL Galera Cluster Architecture
+##  MariaDB Galera Cluster Architecture
 
 ### Technical Structure of the cluster
 
