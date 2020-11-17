@@ -43,10 +43,12 @@ We are working with Centos 8 here
   1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
   
   1. [License MaxScale](#License-Maxscale)
+  
+  1. [EasyPeasy - mysqladmin](mysqladmin.md) 
 
 ## 2-Installation
 
-### 2.1 Centos 7 - Repo - Configuration  
+### 2.1 Centos 8 - Repo - Configuration  
 
   * configure repo on: https://mariadb.org/download/#mariadb-repositories
   * write configuration below into /etc/yum.repos.d/mariadb.repo
