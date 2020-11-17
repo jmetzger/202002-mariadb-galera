@@ -22,7 +22,7 @@ Hold time = 128MB / (7200MB / 4h) = 128MB / 0.5 MB = 256s.
 Then, we can calculate the right GCache size value to handle the maintenance window by the following formula: GCache = Maintenance window * Replication Rate = 14400s * 0.5 MB. GCache = 7200MB.
 In other words, the right GCache size should be equivalent to (or not less than) the amount of replicated data.
 
-Frage 2: What does OSU-Method: TOI and OSU-Method: RSU mean ?
+# Frage 2: What does OSU-Method: TOI and OSU-Method: RSU mean ?
 
 SHOW VARIABLES LIKE 'wsrep_OSU_method';
 
@@ -30,7 +30,7 @@ OSU= Online Schema Updates.
 Defines how Online Schema Updates are done. 
 a) TOI: Default: TOI - Total Order Isolation 
 (Update are done simultaneously on all nodes, blocks all traffics for write AND READ in the meantime - to all nodes). So while doing does, cluster is „none functional“ 
-Online Schema Updates on MySQL are expensive: 
+Online Schema Updates on MariaDB are expensive: 
 - Temporary Table is created with new structure .
 - Original table is completely locked 
 - Temporary Table is populated, 
