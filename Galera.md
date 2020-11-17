@@ -448,18 +448,13 @@ wsrep_log_conflicts=ON
 wsrep_provider_options="cert.log_conflicts=ON"
 wsrep_debug=ON
 ```
-
-*  Ref: http://galeracluster.com/documentation-webpages/log.html
-
-
+*  Ref: https://galeracluster.com/library/documentation/log.html
 
 #### Removing and adding cluster node
 
 ##### Removing a cluster node
 
-
 ##### Adding a cluster node
-
 
 *  Ref: https://www.globo.tech/learning-center/new-node-galera-replication-cluster-ubuntu-16/
 
@@ -467,13 +462,10 @@ wsrep_debug=ON
 
 ##### Technical Backgrounds
 
-
 *  Approach 1: TOI (Total Order Isolation)
-
 *  Approach 2: RSU (Rolling Schema Updates)
 
 ##### Advantages/Disadvantages TOI
-
 
 *  Advantages: 
     * Simplicity and predictability 
@@ -487,17 +479,12 @@ wsrep_debug=ON
 
 ```
 # Schema changes are processed on all nodes
-
 # All nodes are locked till it is done.
 SET GLOBAL wsrep_OSU_method='TOI';
 ```
-
 #### Starting a cluster after full shutdown
 
-
 *  Starting node 1
-
-
 *  Starting node n+1...x (e.g. node 2 -> node 5) 
 
 ### Backup & Monitoring
@@ -506,38 +493,27 @@ SET GLOBAL wsrep_OSU_method='TOI';
 
 ##### Backup
 
-    
-
-*  Best practice: 
-    * Preparation:
-
-	
-	apt search garbd 
-	apt install galera-arbitrator-3
-
-    * http://galeracluster.com/documentation-webpages/backingupthecluster.html
-
+  *  Best practice: 
+  * Preparation:
+```	
+apt search garbd 
+apt install galera-arbitrator-3
+```
+    * https://galeracluster.com/library/training/tutorials/galera-backup.html
 #### Monitoring of the MariaDB cluster
 
-
 *  There are some possiblities to log state on the commandline 
-
-*  Ref: http://galeracluster.com/documentation-webpages/monitoringthecluster.html
+*  Ref: https://galeracluster.com/library/training/tutorials/galera-monitoring.html
 
 #### Monitoring of a cluster with MaxScale
 
-
 *  Generic configuration for all monitors (there are more than Galera Monitor) 
-
 *  https://mariadb.com/kb/en/mariadb-maxscale-23-common-monitor-parameters/
 
 #####  Galera Monitor
 
-
 *  Monitor a cluster 
-
 *  Detects if nodes are part of the cluster
-
 *  Find out if cluster nodes are in sync
 
 #####  Example configuration
@@ -584,7 +560,7 @@ SHOW STATUS LIKE 'wsrep_local_recv_queue_avg';
 +----------------------------+---------+
 ```
 
-*  Ref: http://galeracluster.com/documentation-webpages/detectingaslownode.html
+*  Ref: https://galeracluster.com/library/kb/detecting-slow-node.html
 
 #### Desynchronise one node for backup and maintenance in the Cluster
 
