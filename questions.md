@@ -1,4 +1,6 @@
-# Frage 1:  Gibt es eine Formel für den gcache ? 
+# FAQ's  
+
+## Frage 1:  Gibt es eine Formel für den gcache ? 
 
 Ja, dieser läßt sich umgekehrt berechnen,
 d.h. wieviel Downtime kann ich mir leisten ? 
@@ -22,7 +24,7 @@ Hold time = 128MB / (7200MB / 4h) = 128MB / 0.5 MB = 256s.
 Then, we can calculate the right GCache size value to handle the maintenance window by the following formula: GCache = Maintenance window * Replication Rate = 14400s * 0.5 MB. GCache = 7200MB.
 In other words, the right GCache size should be equivalent to (or not less than) the amount of replicated data.
 
-# Frage 2: What does OSU-Method: TOI and OSU-Method: RSU mean ?
+## Frage 2: What does OSU-Method: TOI and OSU-Method: RSU mean ?
 
 SHOW VARIABLES LIKE 'wsrep_OSU_method';
 
@@ -86,34 +88,36 @@ ALTER ...  /* compatible schema change only! */
 SET wsrep_on=1;
 SET GLOBAL wsrep_desync=0;
 
-Frage 3: Was ist besser mariabackup oder rsync.
+## Frage 3: Was ist besser mariabackup oder rsync.
 Aus meiner Sicht ist mariabackup besser weil es non-blocking. 
 rsync ist im Gegensatz dazu blockierend, d.h. während des SST
 steht der Donor nicht für Anfragen zur Verfügung.
 
 Ref: https://www.claudiokuenzler.com/blog/887/comparing-galera-wsrep-sst-methods-rsync-vs-mariabackup
 
-Frage 4: Welche Werte sind wichtig beim Monitoring. Wie kann ich sehen, ob ein Nodes hinterherhinkt. 
+## Frage 4: Welche Werte sind wichtig beim Monitoring. Wie kann ich sehen, ob ein Nodes hinterherhinkt. 
 https://severalnines.com/database-blog/monitoring-galera-cluster-mysql-or-mariadb-understanding-metrics-updated
 
-	•	wsrep_local_send_queue - current state of the send queue
+```
+	•	wsrep_local_send_queue - current state of the send queue
 	•	wsrep_local_send_queue_min - minimum since FLUSH STATUS
 	•	wsrep_local_send_queue_max - maximum since FLUSH STATUS
 	•	wsrep_local_send_queue_avg - average since FLUSH STATUS
 	•	wsrep_local_recv_queue - current state of the receive queue
 	•	wsrep_local_recv_queue_min - minimum since FLUSH STATUS
 	•	wsrep_local_recv_queue_max - maximum since FLUSH STATUS
-	•	wsrep_local_recv_queue_avg - average since FLUSH STATUS
+	•	wsrep_local_recv_queue_avg - average since FLUSH STATUS
+```
 
 Important: wsrep_local_recv_queue
 wsrep_local_send_queue
 
-Frage 5: Keine Frage aber ein sehr guter Read:
+## Frage 5: Keine Frage aber ein sehr guter Read:
 https://www.percona.com/blog/2014/11/17/typical-misconceptions-on-galera-for-mysql/
 
-Frage 6: How fast is a cluster (Referring to: Callaghan’s law: “In a Galera cluster a given row can’t be modified more than once per RTT”.)
+## Frage 6: How fast is a cluster (Referring to: Callaghan’s law: “In a Galera cluster a given row can’t be modified more than once per RTT”.)
 
-# RTT - Round-Trip-Time lässt sich mit einem Ping messen
+### RTT - Round-Trip-Time lässt sich mit einem Ping messen
 ping -c 4 10.10.11.141
 PING 10.10.11.141 (10.10.11.141) 56(84) bytes of data.
 64 bytes from 10.10.11.141: icmp_seq=1 ttl=64 time=0.270 ms
@@ -135,17 +139,17 @@ And finally several threads can commit at the same time, increasing the write th
 Of course, this is only theory. In the real world, you will probably not get so perfectly aligned numbers. You can look at this post (Comparing Percona XtraDB Cluster with Semi-Sync replication Cross-WAN) to see real numbers with 1 thread and 32 threads.
 Conclusion: network latency is a limiting factor for write throughput, that’s true. But that may not be as bad as you can think. And remember Callaghan’s law: “In a Galera cluster a given row can’t be modified more than once per RTT”.
 
-Frage 7: Wie funktioniert flow control:
+## Frage 7: Wie funktioniert flow control:
 
 * unable to match the apply speed with the replicated write-set speed
 * If queue crosses some threshold (dictated by gcs.fc_limit), then flow control kicks in.
 * Flow control causes members of the cluster to temporary halt/slow-down so that the slower node can catch up.
 
-Frage 8: tunen von gc.fc_limit 
+## Frage 8: tunen von gc.fc_limit 
 
 Flow control causes members of the cluster to temporary halt/slow-down so that the slower node can catch up.
 
-# set global wsrep_provider_options="gcs.fc_limit=16";
+```# set global wsrep_provider_options="gcs.fc_limit=16";```
 
 If you are settings this value really high, you loose freshness of data.
 (e.g. like 1600, so it can keep 1600 write sets in the cache) 
@@ -154,6 +158,8 @@ If you are settings this value really high, you loose freshness of data.
 set global wsrep_sync_wait=„gcs.wsrep_sync_wait=1“ 
 
 wsrep_sync_wait
+
+```
 Defines whether the node enforces strict cluster-wide causality checks.
 Command-line Format
 --wsrep-sync-wait
@@ -169,19 +175,24 @@ Default Value
 0
 Initial Version
 Version 3.6
+```
+
 When you enable this parameter, the node triggers causality checks in response to certain types of queries. During the check, the node blocks new queries while the database server catches up with all updates made in the cluster to the point where the check was begun. Once it reaches this point, the node executes the original query.
 
-Frage 9: Richtige Werte für Performance Optimierung: 
+## Frage 9: Richtige Werte für Performance Optimierung: 
 
+```
 # unschädlich, gleiches Verhalten wie bei single_node, wenn nicht alle cluster-
 # Nodes Gleichzeitig Stromausfall haben  
 innodb_flush_log_at_trx_commit = 2
 sync_bin_log = 0 
 Auf keinen Fall > 0 
+```
 
-Frage 10: Wie hoch sollten die Parallel-Threads sein ? 
+## Frage 10: Wie hoch sollten die Parallel-Threads sein ? 
+```
 SET GLOBAL wsrep_slave_threads = 48;
-
+```
 To get the best out of this, we need to know two things:
 	•	The number of cores the server has.
 	•	The value of wsrep_cert_deps_distance status. (this is our max) - potential degrees of parallelization:
@@ -192,18 +203,20 @@ wsrep_slave_threads
 (Should be minimum 4x the cpu core, but not more than wsrep_cert_deps_distance) 
 
 
-Frage 11. Wie erstelle ich am besten backups ? 
+## Frage 11. Wie erstelle ich am besten backups ? 
 
 Wichtig: Die node muss desynchrnoisiert werden, bevor ich Backups mache:
 
+```
 Variante 1:
 mysql -p -u root --execute "SET wsrep_desync = ON"
 Dann:
 mysqldump -p -u admin_backup \
           --flush-logs --all-databases \
           > /backups/db-backup-20191025.sql
+```
 
-
+```
 Variante 2:
 mysql -p -u root -e "STOP SLAVE"
 
@@ -211,8 +224,44 @@ mysqldump -p -u admin_backup --flush-logs --all-databases \
           > /backups/temp/backup-20191025.sql
 
 cp -r /etc/my.cnf* /backups/temp/
+```
 
-
+```
 Variante 3: 
 Using garbd
 Refer to: 
+
+```
+
+## Frage 12: How does mariadb galera cluster work with mysql_upgrade and RSU 
+
+```
+ On Fri, Jun 19, 2015 at 9:55 AM, Tom Worster <fsb@xxxxxxxxxx> wrote:
+> Can I upgrade a production cluster from 10.0.15 to 10.0.19 while the cluster
+> remains in service, upgrading one node at a time?
+> 
+> 
+> Yes, you can do this. If you plan to run mysql_upgrade on each node
+> after upgrading, you may want to set wsrep_OSU_method to RSU before
+> doing so. I think this is especially important for this upgrade, since
+> mysql_upgrade in 10.0.19 calls REPAIR VIEW. That statement doesn't
+> exist in 10.0.15.
+> 
+> http://galeracluster.com/documentation-webpages/mysqlwsrepoptions.html#wsrep-osu-method
+> 
+> https://mariadb.com/kb/en/mariadb/repair-view/
+> 
+> e.g.:
+> 
+> service mysql stop
+> yum update MariaDB-Galera-server MariaDB-client MariaDB-devel
+> MariaDB-shared galera-3
+> service mysql start
+> mysql --execute="SET GLOBAL wsrep_OSU_method=RSU;"
+> mysql_upgrade
+> mysql --execute="SET GLOBAL wsrep_OSU_method=TOI;"
+> 
+> Geoff
+```
+
+Refer to: https://lists.launchpad.net/maria-discuss/msg02698.html
