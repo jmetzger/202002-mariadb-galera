@@ -39,6 +39,8 @@ We are working with Centos 8 here
   1. [Handling bei Stromausfall](galera-stromausfall.md) 
   
   1. [Server konfigurieren (Start/stop und Laufzeit)](server-configuration.md) 
+  
+  1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
 
 ## 2-Installation
 
