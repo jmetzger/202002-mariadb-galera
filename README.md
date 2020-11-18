@@ -9,7 +9,7 @@ We are working with Centos 8 here
   1. [Architecture of the MySQL - Server](arch.md)
  
   1. Installation
-     1.1. [Installation (Centos 8)](installation-centos-8.md)
+     1. [Installation (Centos 8)](installation-centos-8.md)
   1. Configuration
  
   1. Security and User-Rights
