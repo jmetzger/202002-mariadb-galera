@@ -302,9 +302,23 @@ innodb_autoinc_lock_mode = 2
 
 ### 14 Simulations 
 
+  * Scenario, where node goes into Non-Primary mode, because the other
+  * node have no connection 
+  
 ```
+## Does not work, because established connections to still on requests
 for i in  3306 4444 4567 4568 ; do firewall-cmd --remove-port=$i/tcp; done
 firewall-cmd --remove-port=4567/udp 
+
+## try this instead + do it on terminal !
+## on node 3 (or another node) 
+systemctl stop firewalld 
+for i in  3306 4444 4567 4568 ; do firewall-cmd --remove-port=$i/tcp; done
+iptables -A INPUT -p tcp --destination-port 80 -j DROP
+```
+
+
+
 ```
 ### License Maxscale 
 
