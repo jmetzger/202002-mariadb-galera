@@ -15,3 +15,16 @@ hostnamectl set-hostname galera1.training.local
 ## Im  Training 
 
   * Maschinen 2x in virtualbox clonen 
+
+## Achtung machine_id löschen 
+
+  * Sonst erfolgt die gleiche IP auf allen maschinen 
+
+```
+sudo rm -f /etc/machine-id 
+sudo systemd-machine-id-setup
+sudo hostnamectl set-hostname galera2.training.local
+sudo reboot 
+```
+
+  
