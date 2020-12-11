@@ -20,8 +20,9 @@
 ##### State Snaphost Transfer (SST)
 
   *  Full Transfer is done
-  *  Methods: rsync, xtrabackup, mariadback, mysqldump, rsync
-  *  Some are blocking, some are not (let's see later)
+  *  Methods: mariabackup, mysqldump, rsync
+  *  Some are blocking (mysqldump, rsync), some are not (mariabackup)
+  *  Please do not use !!! xtrabackup or xtrabackup_v2 for mariadb because of encryption 
 
 ##### Incremental State Transfer (IST)
 
