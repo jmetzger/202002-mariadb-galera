@@ -54,7 +54,9 @@
 
 ### 2.2.1 Configuration
 
- 
+  * [MariaDB Cluster Configuration (Ubuntu 20.04 LTS / MariaDb 10.04)](cluster-configuration.md)
+  * [MariaDB Cluster Configuration (Centos)](cluster-configuration-centos.md) 
+  
 ### 2.3 Configuration SELinux (Centos)  
 
 ```
