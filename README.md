@@ -143,13 +143,6 @@ Schritt 6: Server mit: systemctl.stop mariadb;  systemctl start mariadb
 Schritt 7: Überprüfung: mysql  show status like ‚wsrep%‘ # guckst cluster_size 
 ```
 
-
-## 3 Configuration 
-
-### Best source 
-
-https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html
-
 ## 4 Security and user rights 
 
 ```
