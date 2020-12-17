@@ -55,24 +55,6 @@
   * [MariaDB Cluster Configuration (Centos)](cluster-configuration-centos.md) 
  
 
-
-## 4 Security and user rights 
-
-```
-# All available rights 
-https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html
-```
-
-## 8 Performance Optimization 
-
-### Slow query (good read) 
-
-https://mariadb.com/kb/en/slow-query-log-overview/
-
-## Innodb and general optimization 
-https://www.percona.com/blog/2016/10/12/mysql-5-7-performance-tuning-immediately-after-installation/
-http://schulung.t3isp.de/documents/pdfs/mysql/mysql-performance.pdf
-
 ## 9 Backup und Restore
 
 ### Import csv-data 
