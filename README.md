@@ -7,16 +7,20 @@
   1. Installation
      * [Installation (Ubuntu 20.04 LTS)](installation-ubuntu-20-04.md)
      * [Installation (Centos 8)](installation-centos-8.md)
+  
   1. Configuration
      * [MariaDB Cluster Configuration (Ubuntu 20.04 LTS / MariaDb 10.04)](cluster-configuration-ubuntu-20-04.md)
      * [MariaDB Cluster Configuration (Centos)](cluster-configuration-centos.md) 
- 
-  1. Security and User-Rights
- 
-  1. Locking 
-
-  1. Database objects 
-
+  
+  1. Troubleshooting  
+     * [Handling bei Stromausfall](galera-stromausfall.md) 
+  
+  1. Tipps & Tricks 
+     * [Find good gcache-size](determine-gcache.md) 
+  
+  1. MaxScale 
+     * [License MaxScale](#License-Maxscale)
+  
   1. Monitoring 
 
   1. Performance Optimization 
@@ -33,15 +37,10 @@
   
   1. [Backup with Arbitrator aka garbd](garbd-backup.md)
   
-  1. [Find good gcache-size](determine-gcache.md) 
-  
-  1. [Handling bei Stromausfall](galera-stromausfall.md) 
-  
   1. [Server konfigurieren (Start/stop und Laufzeit)](server-configuration.md) 
   
   1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
   
-  1. [License MaxScale](#License-Maxscale)
   
   1. [EasyPeasy - mysqladmin](mysqladmin.md) 
 
