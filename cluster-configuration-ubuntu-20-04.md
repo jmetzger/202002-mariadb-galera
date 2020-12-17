@@ -1,4 +1,4 @@
-# Cluster Configuration (ubuntu 20.04 - MariaDB 10.4 from mariadb.org) 
+# Cluster Configuration (ubuntu - MariaDB 10.4 from mariadb.org) 
 
 ## Node 1 
 
