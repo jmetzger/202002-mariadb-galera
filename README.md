@@ -37,8 +37,6 @@
   
   1. [Backup with Arbitrator aka garbd](garbd-backup.md)
   
-  1. [Server konfigurieren (Start/stop und Laufzeit)](server-configuration.md) 
-  
   1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
   
   
@@ -56,92 +54,7 @@
   * [MariaDB Cluster Configuration (Ubuntu 20.04 LTS / MariaDb 10.04)](cluster-configuration-ubuntu-20-04.md)
   * [MariaDB Cluster Configuration (Centos)](cluster-configuration-centos.md) 
  
-### 2.3 Configuration SELinux (Centos)  
 
-```
-# Option 1
-# Disable selinux at runtime 
-sestatus
-# switch from enforcing to permissive (runtime) 
-setenforce 0
-getenforce
-sestatus
-
-```
-
-
-```
-# Option 2
-# Open everything that is needed 
-# setools provide command semanage
-# yum provides semanage
-yum install setools 
-# Somehow redundant when you open the service altogether
-# With mysqld_t 
-# semanage port -a -t mysqld_port_t -p tcp 3306
-# semanage port -a -t mysqld_port_t -p tcp 4444
-# semanage port -a -t mysqld_port_t -p tcp 4567
-# semanage port -a -t mysqld_port_t -p udp 4567 
-# semanage port -a -t mysqld_port_t -p tcp 4568
-semanage permissive -a mysqld_t
-```
-
-### 2.4 Firewall 
-
-```
-# Option 1
-systemctl disable firewalld
-systemctl stop firewalld 
-```
-
-
-```
-# Option 2
-https://galeracluster.com/library/documentation/firewalld.html
-
-# redundant - next line
-# firewall-cmd --zone=public --add-service=mysql --permanent
-firewall-cmd --zone=public --add-port=3306/tcp --permanent
-firewall-cmd --zone=public --add-port=4444/tcp --permanent
-firewall-cmd --zone=public --add-port=4567/udp --permanent
-firewall-cmd --zone=public --add-port=4567/tcp --permanent
-firewall-cmd --zone=public --add-port=4568/tcp --permanent
-firewall-cmd --reload
-# did this work ? 
-firewall-cmd --list-all-zones | grep -A10 "public"
-
-```
-
-## 2.5 Add second node 
-
-```
-# like 2.4, but no galera_new_cluster 
-# instead
-systemctl start mariadb
-# see logs of connecting 
-journalctl -u mariadb 
-```
-
-## 2.5.1. Step-by-Step 2nd Node 
-
-```
-Schritt 1: z_galera.cnf rüberschieben (von Server 1) 
-Schritt 2: plugin -eintrag ändern -4 raus
-Schritt 3: galera.cnf umbenennen galera.cnf.NOT (aus Installation 10.3, wenn vorhanden) 
-Schritt 4: 
-semanage permissive -a mysqld_t
-
-Schritt 5: Firewall - Regeln eintragen
-firewall-cmd --zone=public --add-port=3306/tcp --permanent
-firewall-cmd --zone=public --add-port=4444/tcp --permanent
-firewall-cmd --zone=public --add-port=4567/udp --permanent
-firewall-cmd --zone=public --add-port=4567/tcp --permanent
-firewall-cmd --zone=public --add-port=4568/tcp --permanent
-firewall-cmd --reload
-
-Schritt 6: Server mit: systemctl.stop mariadb;  systemctl start mariadb 
-Schritt 7: Überprüfung: mysql  show status like ‚wsrep%‘ # guckst cluster_size 
-```
 
 ## 4 Security and user rights 
 
@@ -242,12 +155,6 @@ https://kofler.info/systemd-timer-als-cron-alternative/
 
 
 
-
-### 11 Misc
-
-#### Savepoints 
-
-https://dev.mysql.com/doc/refman/8.0/en/savepoint.html
 
 
 ### 12 Documentation 
