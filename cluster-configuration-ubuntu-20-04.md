@@ -3,7 +3,7 @@
 ## Node 1 
 
 ```
-# cat z_galera.cnf
+# cat /etc/mysql/mariadb.conf.d/z_galera.cnf
 [mysqld]
 binlog_format=ROW
 default-storage-engine=innodb
