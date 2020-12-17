@@ -9,10 +9,10 @@ We are working with Centos 8 here
   1. [Architecture of the MySQL - Server](arch.md)
  
   1. Installation
-     1. [Installation (Ubuntu 20.04)](installation-ubuntu-20.04)
-     1. [Installation (Centos 8)](installation-centos-8.md)
+     * [Installation (Ubuntu 20.04 LTS)](installation-ubuntu-20-04.md)
+     * [Installation (Centos 8)](installation-centos-8.md)
   1. Configuration
-     1. [MariaDB Cluster Configuration](cluster-configuration.md)
+     * [MariaDB Cluster Configuration (Ubuntu 20.04 LTS](cluster-configuration.md)
  
   1. Security and User-Rights
  
@@ -48,9 +48,16 @@ We are working with Centos 8 here
   
   1. [EasyPeasy - mysqladmin](mysqladmin.md) 
 
-## 2-Installation
+## 2-Installation and Configuration 
 
-### 2.2.1 Configuration /etc/my.cnf.d/z_galera.cnf 
+### 2.1 Installation
+
+  * [Installation (Ubuntu 20.04)](installation-ubuntu-20-04.md)
+  * [Installation (Centos 8)](installation-centos-8.md)
+
+### 2.2.1 Configuration
+
+  * 
 
 ```
 [mysqld]
