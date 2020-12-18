@@ -26,6 +26,10 @@
      * [Installation/Configuration - Debian/Ubuntu](maxscale-installation-configuration-debian-ubuntu.md) 
      * [MaxScale Torubleshooting](maxscale-troubleshooting.md)
   
+  1. ProxySQL 
+     * [Proxysql mit Galera aufsetzen](proxysql.md)
+     * [Sharding mit ProxySQL](proxysql-sharding.md)
+  
   1. Monitoring 
      * [Monitoring Galera Cluster](monitoring.md) 
 
