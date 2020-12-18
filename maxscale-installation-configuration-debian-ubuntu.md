@@ -111,7 +111,8 @@ user=maxscale
 password=P@ssw0rd
 monitor_interval=2000
 disable_master_failback=1
-available_when_donor=1
+# Needs to be false, when block sst-method like rsync is used
+available_when_donor=false 
 
 [RW-Split-Router]
 type=service
