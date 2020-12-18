@@ -105,7 +105,7 @@ type=monitor
 module=galeramon
 servers=server1,server2,server3
 user=maxscale
-password=password
+password=P@ssw0rd
 monitor_interval=2000
 disable_master_failback=1
 available_when_donor=1
@@ -115,7 +115,7 @@ type=service
 router=readwritesplit
 servers=server1,server2,server3
 user=maxscale
-password=password
+password=P@ssw0rd
 max_slave_connections=100%
 max_slave_replication_lag=30
 
