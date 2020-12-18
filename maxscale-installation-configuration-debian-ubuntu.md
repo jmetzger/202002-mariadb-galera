@@ -37,7 +37,7 @@
 *  Pipeline control filters
     * e.g. tee and send to a second server
 
-*  Ref: https://mariadb.com/kb/en/mariadb-maxscale-21-filter-tutorial/
+*  Ref: https://mariadb.com/kb/en/mariadb-maxscale-25-regex-filter/
 
 
 ## Installation and Setup
