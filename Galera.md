@@ -4,10 +4,6 @@
 
 ### Technical Structure of the cluster
 
-#### Overview
-
-![Overview](images/replicationapi.png)
-
 ####  State Changes (e.g. Update of data)
 
  1.  On one node in the cluster, a state change occurs on the database.
