@@ -39,7 +39,11 @@
       * [Documentation-Server-System-Variables](#12-Documentation) 
       * [Documentation/Help](documentation-help.md)
 
-  1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
+  1. [MySQL - Galera - Cluster]
+     * [Overall Document](Galera.md#10-mysql-galera-cluster)
+  
+  1. Deploy Galera Cluster + Maxscale with Ansible 
+     * [Deployment-github-repo](https://github.com/jmetzger/ansible-galera-cluster-maxscale/blob/master/README.md)
   
   1. [Misc](#11-misc) 
  
