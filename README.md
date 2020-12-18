@@ -22,7 +22,7 @@
      * [Find good gcache-size](determine-gcache.md) 
   
   1. MaxScale 
-     * [License MaxScale](#License-Maxscale)
+     * [License MaxScale](maxscale-license.md)
   
   1. Monitoring 
 
