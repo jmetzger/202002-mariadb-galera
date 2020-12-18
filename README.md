@@ -25,6 +25,7 @@
      * [License MaxScale](maxscale-license.md)
   
   1. Monitoring 
+     * [Monitoring Galera Cluster](monitoring.md) 
 
   1. Performance Optimization 
 
