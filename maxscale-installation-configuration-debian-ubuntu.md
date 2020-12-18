@@ -1,4 +1,4 @@
-# MaxScale - LoadBalancer // Installation and Configuration 
+# MaxScale - LoadBalancer // Installation and Configuration (Debian/Ubuntu)
 
 ##  Why do Loadbalancing with MaxScale ?
 
@@ -44,10 +44,15 @@
 
 ### Installation
 	
-	# Setting up the repos 
-	curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
-	# Installing maxscale
-	apt install maxscale
+```
+apt update
+apt install apt-transport-https
+
+# Setting up the repos 
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+# Installing maxscale
+apt install maxscale
+```
 
 ### Setup (Part 1: MaxScale db-user)
 
