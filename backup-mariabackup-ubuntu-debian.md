@@ -21,7 +21,7 @@ mysql -e "set global wsrep_desync = off" # Put cluster back
 systemctl stop mysqld 
 cd /var/lib/
 mv mysql mysql.bkup 
-xtrabackup --no-version-check --copy-back --target-dir=/data/backup-2020092201/
+xtrabackup --copy-back --target-dir=/data/backup-2020092201/
 chown -R mysql:mysql mysql
 systemctl start mysqld 
 ```
