@@ -23,6 +23,7 @@
 
 ## The MaxScale load-balancer and its components
 
+*  Routers 
 *  Listeners 
 *  Filters
 *  Servers (backend database server)
