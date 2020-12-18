@@ -75,6 +75,9 @@ GRANT SELECT ON mysql.columns_priv TO 'maxscale'@'10.10.11.139';
 GRANT SELECT ON mysql.proxies_priv TO 'maxscale'@'10.10.11.139';
 #
 GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
+# Needed for maxscale 
+GRANT SELECT ON mysql.procs_priv TO 'maxscale'@'10.10.11.139';
+GRANT SELECT ON mysql.roles_mapping TO 'maxscale'@'10.10.11.139';
 ```
 
 ```
