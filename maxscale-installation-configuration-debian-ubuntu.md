@@ -128,7 +128,7 @@ servers=server1,server2,server3
 user=maxscale
 password=P@ssw0rd
 max_slave_connections=100%
-max_slave_replication_lag=30
+
 
 [RW-Split-Listener]
 type=listener
