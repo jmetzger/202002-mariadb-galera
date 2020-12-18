@@ -24,6 +24,7 @@
   1. MaxScale 
      * [License MaxScale](maxscale-license.md)
      * [Installation/Configuration - Debian/Ubuntu](maxscale-installation-configuration-debian-ubuntu.md) 
+     * [MaxScale Torubleshooting](maxscale-troubleshooting.md)
   
   1. Monitoring 
      * [Monitoring Galera Cluster](monitoring.md) 
