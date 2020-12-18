@@ -36,7 +36,9 @@
   
   1. [Misc](#11-misc) 
   
-  1. [Documentation](#12-Documentation) 
+  1. [Documentation/Help](#12-Documentation) 
+   
+     * [Documentation/Help](documentation-help.md)
   
   1. [Schema Upgrades](schema-upgrades.md)
   
