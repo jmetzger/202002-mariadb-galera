@@ -34,21 +34,20 @@
      * [Backup und Restore mit Mariabackup (Ubuntu/Debian)](backup-mariabackup-ubuntu-debian.md)
      * [Backup automatisiert](backup-automatisiert.md) 
 
+   1. [Documentation/Help](#12-Documentation) 
+   
+     * [Documentation/Help](documentation-help.md)
+
   1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
   1. [Misc](#11-misc) 
-  
-  1. [Documentation/Help](#12-Documentation) 
-   
-     * [Documentation/Help](documentation-help.md)
-  
+ 
   1. [Schema Upgrades](schema-upgrades.md)
   
   1. [Backup with Arbitrator aka garbd](garbd-backup.md)
   
   1. [Backup und Recover - mysqldump/mysql ](mysqldump-mysql.md) 
-  
-  
+   
   1. [EasyPeasy - mysqladmin](mysqladmin.md) 
 
 ## 2-Installation and Configuration 
