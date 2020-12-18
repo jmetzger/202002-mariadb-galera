@@ -35,8 +35,7 @@
      * [Backup automatisiert](backup-automatisiert.md) 
 
    1. [Documentation/Help](#12-Documentation) 
-   
-     * [Documentation/Help](documentation-help.md)
+      * [Documentation/Help](documentation-help.md)
 
   1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
   
