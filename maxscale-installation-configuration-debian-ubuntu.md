@@ -56,6 +56,9 @@ apt install maxscale
 
 ### Setup (Part 1: MaxScale db-user)
 
+  * Do this on one of the galera nodes 
+  * Adjust IP !! 
+
 ```bash
 # IP FROM MAXSCALE
 # Setup privileges on cluster nodes
@@ -63,8 +66,6 @@ apt install maxscale
 # it will be synced to all the other nodes
 # on node 1 
 CREATE USER 'maxscale'@'10.10.11.139' IDENTIFIED BY 'P@ssw0rd';
-#
-ALTER USER 'maxscale'@'10.10.11.139' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
 #
 GRANT SELECT ON mysql.db TO 'maxscale'@'10.10.11.139';
 GRANT SELECT ON mysql.user TO 'maxscale'@'10.10.11.139';
@@ -76,12 +77,14 @@ GRANT SELECT ON mysql.proxies_priv TO 'maxscale'@'10.10.11.139';
 GRANT SHOW DATABASES ON *.* TO 'maxscale'@'10.10.11.139';
 ```
 
-### Attention: On all nodes this needs be done 
-
 ```
-# /etc/my.cnf.d/99_galera.cnf 
-[mysqld]
-default-authentication-plugin=mysql_native_password
+# On maxscale - server 
+apt update 
+apt install mariadb-client 
+# Test the connection 
+# Verbindung sollte aufgebaut werden 
+mysql -u maxscale -p -h <ip-eines-der-nodes>
+mysql>show databases 
 ```
 
 ##### Setup (Part 2: Configuration)
