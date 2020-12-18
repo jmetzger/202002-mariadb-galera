@@ -167,3 +167,14 @@ systemctl start maxscale
 
 # /var/log/maxscale/maxscale.log 
 ```
+
+## maxctrl 
+
+```
+maxctrl list servers
+maxctrl set server server1 maintenance
+maxctrl clear server server1 maintenance
+maxctrl show server server1
+maxctrl list services 
+maxctrl show service ReadWrite-Split-Router 
+```
