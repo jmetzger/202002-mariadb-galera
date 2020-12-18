@@ -1,5 +1,12 @@
 # Mariabackup (Debian/Ubuntu)
 
+## What does set global wsrep_desync='on' do 
+
+  * It allows the node to fall behind and by so, having no impact on the rest of the cluster nodes getting slow 
+  * It simply does does by disabling flow control 
+
+## Walkthrough 
+
   * mariabackup has to be the same version as mariadb 
 
 ```
