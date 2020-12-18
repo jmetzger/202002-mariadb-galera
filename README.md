@@ -28,6 +28,7 @@
      * [Monitoring Galera Cluster](monitoring.md) 
 
   1. Performance Optimization 
+     * [Performance Tracking/Optimization Galera](performance-galera.md) 
 
   1. Backup und Restore
      * [Backup und Restore mit Mariabackup (Ubuntu/Debian)](backup-mariabackup-ubuntu-debian.md)
