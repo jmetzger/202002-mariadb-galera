@@ -20,7 +20,7 @@ user=root
 # Backup 
 mysql -e "set global wsrep_desync = on" # Important !! Cluster node needs to be taken out of the cluster
 mkdir /data
-mariabackup --backup --target-dir=/data/backup-2020092201/
+mariabackup --backup --galera-info --target-dir=/data/backup-2020092201/
 mariabackup --prepare --target-dir=/data/backup-2020092201/
 mysql -e "set global wsrep_desync = off" # Put cluster back 
 
@@ -36,5 +36,5 @@ systemctl start mysqld
 ## Mariabackup xbstream and pipe to gz 
 
 ```
-mariabackup --user=root --backup --stream=xbstream | gzip -9 > /backup/mariadb.gz 
+mariabackup --user=root --backup --galera-info --stream=xbstream | gzip -9 > /backup/mariadb.gz 
 ```
