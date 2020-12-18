@@ -34,7 +34,8 @@
      * [Backup und Restore mit Mariabackup (Ubuntu/Debian)](backup-mariabackup-ubuntu-debian.md)
      * [Backup automatisiert](backup-automatisiert.md) 
 
-   1. [Documentation/Help](#12-Documentation) 
+   1. [Documentation/Help]
+      * [Documentation-Server-System-Variables](#12-Documentation) 
       * [Documentation/Help](documentation-help.md)
 
   1. [MySQL - Galera - Cluster](Galera.md#10-mysql-galera-cluster)
@@ -106,10 +107,6 @@ date >> /var/log/dbbackup.log
 ### Alternative with .timers (systemd)
 
 https://kofler.info/systemd-timer-als-cron-alternative/
-
-
-
-
 
 ### 12 Documentation 
 
