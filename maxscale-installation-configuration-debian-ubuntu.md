@@ -39,6 +39,10 @@
 
 *  Ref: https://mariadb.com/kb/en/mariadb-maxscale-25-regex-filter/
 
+## Documentation - maxctrl 
+
+  * https://mariadb.com/kb/en/mariadb-maxscale-25-maxctrl/
+
 
 ## Installation and Setup
 
